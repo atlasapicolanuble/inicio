@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5297e935.css",
+    "main.js": "/static/js/main.e965a18f.js",
+    "static/js/453.624b797f.chunk.js": "/static/js/453.624b797f.chunk.js",
+    "static/media/miel.mp4": "/static/media/miel.f86103106940ac8e264f.mp4",
+    "static/media/Especies meliferas .pdf_compressed_page-0010.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0010.e33f2fb7c31316f823ec.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0014.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0014.f014fec384deb9cb11d0.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0008.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0008.15186c97efcc1d5f5899.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0009.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0009.42567d464294890e2014.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0016.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0016.eaadd0b5cb0213eb5f33.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0013.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0013.8d44d4d04bfd1c83aa1a.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0012.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0012.0efff592776f15220490.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0015.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0015.42c65171ccda5c1106a8.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0011.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0011.a64b9320e389259797e5.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0017.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0017.0879fa6e84f4b355981b.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0005.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0005.384bcad9e362b75d1638.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0007.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0007.b29a2c5c77989b0dd3ea.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0003.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0003.c52373a09d101546eab6.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0004.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0004.55abbbddaeec9c4b5ed8.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0001.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0001.188573a27c1d0c6646a9.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0006.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0006.fc00b0510d3ea16e9295.jpg",
+    "static/media/logob.png": "/static/media/logob.5dd0de6e4aa3c2ac3030.png",
+    "static/media/logoblanco.jpg": "/static/media/logoblanco.3c759c73ae40890e39e4.jpg",
+    "static/media/Atlas.jpg": "/static/media/Atlas.45800bfec62a67cc5815.jpg",
+    "static/media/Especies meliferas .pdf_compressed_page-0002.jpg": "/static/media/Especies meliferas .pdf_compressed_page-0002.0d322429f639510132e7.jpg",
+    "static/media/Abeja.png": "/static/media/Abeja.51a240ee2ef9231e4fcc.png",
+    "static/media/eco.webp": "/static/media/eco.e34221c8add688cf4995.webp",
+    "static/media/logoinia.png": "/static/media/logoinia.ed0087661e3b67c2ef16.png",
+    "index.html": "/index.html",
+    "main.5297e935.css.map": "/static/css/main.5297e935.css.map",
+    "main.e965a18f.js.map": "/static/js/main.e965a18f.js.map",
+    "453.624b797f.chunk.js.map": "/static/js/453.624b797f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5297e935.css",
+    "static/js/main.e965a18f.js"
+  ]
+}
