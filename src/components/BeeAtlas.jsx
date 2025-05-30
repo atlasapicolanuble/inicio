@@ -43,6 +43,28 @@ import MeliferaPage15 from '../pages/Meliferas/Especies meliferas .pdf_compresse
 import MeliferaPage16 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0016.jpg';
 import MeliferaPage17 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0017.jpg';
 
+const plantNames = [
+  'Diente de León',
+  'Quillay', 
+  'Rábano silvestre',
+  'Cogüilera',
+  'Ambrosía',
+  'Brásica (Nabo)',
+  'Castaño',
+  'Canchanlahue',
+  'Huasita',
+  'Voqui colorado',
+  'Yaquil',
+  'Viudita',
+  'Cardo de huerta',
+  'Lengua de gato',
+  'Eucalipto',
+  'Galega'
+];
+const getCurrentPlantName = () => {
+  const pageNumber = getMeliferaPageNumber();
+  return plantNames[pageNumber - 1] || `Página ${pageNumber}`;
+};
 // Componente MeliferaPage optimizado y limpio
 const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantIndex = 0 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -607,14 +629,15 @@ const AtlasPage = () => {
             </button>
           </div>
           
-          {/* Indicador de página melífera */}
           {isMeliferaPage && currentPage.startsWith('melifera-page-') && (
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center z-30">
-              <div className="bg-green-800 bg-opacity-90 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-                Página {getMeliferaPageNumber()} de 17
-              </div>
-            </div>
-          )}
+  <div className="absolute bottom-4 left-0 right-0 flex justify-center z-30">
+    <div className="bg-green-800 bg-opacity-90 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+      {getCurrentPlantName()} ({getMeliferaPageNumber()} de 16)
+    </div>
+  </div>
+)}
+            
+          
         </div>
       </div>
     </>
