@@ -59,12 +59,10 @@ const plantNames = [
   'Cardo de huerta',
   'Lengua de gato',
   'Eucalipto',
-  'Galega'
+  'Galega',
+  'Apicultura Natural Regenerativa'
 ];
-const getCurrentPlantName = () => {
-  const pageNumber = getMeliferaPageNumber();
-  return plantNames[pageNumber - 1] || `Página ${pageNumber}`;
-};
+
 // Componente MeliferaPage optimizado y limpio
 const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantIndex = 0 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -344,6 +342,12 @@ const AtlasPage = () => {
     return match ? parseInt(match[1]) : 0;
   };
 
+  // Función para obtener el nombre de la planta actual
+  const getCurrentPlantName = () => {
+    const pageNumber = getMeliferaPageNumber();
+    return plantNames[pageNumber - 1] || `Página ${pageNumber}`;
+  };
+
   const sectionToPage = {
     1: 'bee-history', 2: 'bee-structure', 3: 'bee-reproduction',
     4: 'melifera-botany', 5: 'bee-temperature', 6: 'apiculture',
@@ -594,7 +598,7 @@ const AtlasPage = () => {
                                   : 'text-gray-600 hover:bg-green-50'
                               }`}
                             >
-                              Página {num}
+                              {plantNames[num - 1] || `Página ${num}`}
                             </button>
                           ))}
                         </div>
@@ -629,15 +633,14 @@ const AtlasPage = () => {
             </button>
           </div>
           
+          {/* Indicador de página melífera */}
           {isMeliferaPage && currentPage.startsWith('melifera-page-') && (
-  <div className="absolute bottom-4 left-0 right-0 flex justify-center z-30">
-    <div className="bg-green-800 bg-opacity-90 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-      {getCurrentPlantName()} ({getMeliferaPageNumber()} de 16)
-    </div>
-  </div>
-)}
-            
-          
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center z-30">
+              <div className="bg-green-800 bg-opacity-90 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                {getCurrentPlantName()}
+              </div>
+            </div>
+          )} 
         </div>
       </div>
     </>
