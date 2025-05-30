@@ -1,9 +1,20 @@
-/* MeliferaStyles.css - Estilos adicionales para las páginas de especies melíferas */
+/* MeliferaStyles.css - Estilos completos para las páginas de especies melíferas */
 
-/* Animaciones generales */
+/* Reset y configuración base */
+* {
+  box-sizing: border-box;
+}
+
+/* Animaciones principales */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { 
+    opacity: 0; 
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideInUp {
@@ -28,181 +39,10 @@
   }
 }
 
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  70% { transform: scale(0.9); }
-  100% { transform: scale(1); }
-}
-
-@keyframes pulseLight {
-  0% { background-color: rgba(240, 255, 244, 0.5); }
-  50% { background-color: rgba(220, 252, 231, 0.8); }
-  100% { background-color: rgba(240, 255, 244, 0.5); }
-}
-
-/* Clases para aplicar animaciones */
-.melifera-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.melifera-slide-up {
-  animation: slideInUp 0.5s ease-out forwards;
-}
-
-.melifera-slide-right {
-  animation: slideInRight 0.5s ease-out forwards;
-}
-
-.melifera-bounce {
-  animation: bounceIn 0.6s ease-out forwards;
-}
-
-.melifera-pulse-bg {
-  animation: pulseLight 3s infinite;
-}
-
-/* Efectos para tarjetas informativas */
-.melifera-card {
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.melifera-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Efectos para bordes y elementos decorativos */
-.melifera-border-pulse {
-  position: relative;
-}
-
-.melifera-border-pulse::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #10b981, #34d399, #10b981);
-  background-size: 200% 100%;
-  animation: gradient-shift 3s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Efectos para elementos de lista escalonados */
-.melifera-staggered-list > * {
-  opacity: 0;
-}
-
-.melifera-staggered-list > *:nth-child(1) { animation: slideInUp 0.3s 0.1s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(2) { animation: slideInUp 0.3s 0.2s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(3) { animation: slideInUp 0.3s 0.3s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(4) { animation: slideInUp 0.3s 0.4s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(5) { animation: slideInUp 0.3s 0.5s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(6) { animation: slideInUp 0.3s 0.6s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(7) { animation: slideInUp 0.3s 0.7s ease-out forwards; }
-
-/* Efectos para el contenedor de la imagen */
-.melifera-image-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.melifera-image-container::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(52, 211, 153, 0.1),
-    rgba(16, 185, 129, 0.2),
-    rgba(52, 211, 153, 0.1)
-  );
-  transform: rotate(45deg);
-  animation: shimmer 3s linear infinite;
-}
-
-@keyframes shimmer {
-  from { transform: rotate(45deg) translateY(-100%); }
-  to { transform: rotate(45deg) translateY(100%); }
-}
-
-/* Efectos para las etiquetas */
-.melifera-tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: white;
-  background-color: #10b981;
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
-  transition: all 0.2s ease;
-}
-
-.melifera-tag:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.4);
-}
-
-/* Estilos para mejorar la visualización en dispositivos móviles */
-@media (max-width: 768px) {
-  .melifera-mobile-padding {
-    padding: 0.75rem;
-  }
-  
-  .melifera-mobile-stack {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .melifera-mobile-compact h2 {
-    font-size: 1.5rem;
-  }
-  
-  .melifera-mobile-compact h3 {
-    font-size: 1rem;
-  }
-}/* MeliferaStyles.css - Estilos adicionales para las páginas de especies melíferas */
-
-/* Animaciones generales */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideInUp {
+@keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
@@ -219,19 +59,50 @@
     opacity: 1;
     transform: scale(1.05);
   }
-  70% { transform: scale(0.9); }
-  100% { transform: scale(1); }
+  70% { 
+    transform: scale(0.9); 
+  }
+  100% { 
+    transform: scale(1); 
+  }
 }
 
 @keyframes pulseLight {
-  0% { background-color: rgba(240, 255, 244, 0.5); }
-  50% { background-color: rgba(220, 252, 231, 0.8); }
-  100% { background-color: rgba(240, 255, 244, 0.5); }
+  0% { 
+    background-color: rgba(240, 255, 244, 0.5); 
+  }
+  50% { 
+    background-color: rgba(220, 252, 231, 0.8); 
+  }
+  100% { 
+    background-color: rgba(240, 255, 244, 0.5); 
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* Clases para aplicar animaciones */
 .melifera-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 .melifera-slide-up {
@@ -242,6 +113,10 @@
   animation: slideInRight 0.5s ease-out forwards;
 }
 
+.melifera-slide-left {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
 .melifera-bounce {
   animation: bounceIn 0.6s ease-out forwards;
 }
@@ -250,15 +125,72 @@
   animation: pulseLight 3s infinite;
 }
 
-/* Efectos para tarjetas informativas */
+.melifera-float {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+/* Efectos para tarjetas informativas mejoradas */
 .melifera-card {
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .melifera-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.melifera-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.melifera-card:hover::before {
+  left: 100%;
+}
+
+/* Efectos para el contenedor de imagen mejorado */
+.melifera-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+}
+
+.melifera-image-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(52, 211, 153, 0.1),
+    rgba(16, 185, 129, 0.2),
+    rgba(52, 211, 153, 0.1)
+  );
+  transform: rotate(45deg);
+  animation: shimmer 4s linear infinite;
+  z-index: 1;
+}
+
+.melifera-image-container img {
+  position: relative;
+  z-index: 2;
 }
 
 /* Efectos para bordes y elementos decorativos */
@@ -272,10 +204,11 @@
   bottom: -2px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background: linear-gradient(90deg, #10b981, #34d399, #10b981);
   background-size: 200% 100%;
   animation: gradient-shift 3s ease infinite;
+  border-radius: 2px;
 }
 
 @keyframes gradient-shift {
@@ -289,77 +222,308 @@
   opacity: 0;
 }
 
-.melifera-staggered-list > *:nth-child(1) { animation: slideInUp 0.3s 0.1s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(2) { animation: slideInUp 0.3s 0.2s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(3) { animation: slideInUp 0.3s 0.3s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(4) { animation: slideInUp 0.3s 0.4s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(5) { animation: slideInUp 0.3s 0.5s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(6) { animation: slideInUp 0.3s 0.6s ease-out forwards; }
-.melifera-staggered-list > *:nth-child(7) { animation: slideInUp 0.3s 0.7s ease-out forwards; }
-
-/* Efectos para el contenedor de la imagen */
-.melifera-image-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
+.melifera-staggered-list > *:nth-child(1) { 
+  animation: slideInUp 0.4s 0.1s ease-out forwards; 
+}
+.melifera-staggered-list > *:nth-child(2) { 
+  animation: slideInUp 0.4s 0.2s ease-out forwards; 
+}
+.melifera-staggered-list > *:nth-child(3) { 
+  animation: slideInUp 0.4s 0.3s ease-out forwards; 
+}
+.melifera-staggered-list > *:nth-child(4) { 
+  animation: slideInUp 0.4s 0.4s ease-out forwards; 
+}
+.melifera-staggered-list > *:nth-child(5) { 
+  animation: slideInUp 0.4s 0.5s ease-out forwards; 
+}
+.melifera-staggered-list > *:nth-child(6) { 
+  animation: slideInUp 0.4s 0.6s ease-out forwards; 
+}
+.melifera-staggered-list > *:nth-child(7) { 
+  animation: slideInUp 0.4s 0.7s ease-out forwards; 
 }
 
-.melifera-image-container::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(52, 211, 153, 0.1),
-    rgba(16, 185, 129, 0.2),
-    rgba(52, 211, 153, 0.1)
-  );
-  transform: rotate(45deg);
-  animation: shimmer 3s linear infinite;
-}
-
-@keyframes shimmer {
-  from { transform: rotate(45deg) translateY(-100%); }
-  to { transform: rotate(45deg) translateY(100%); }
-}
-
-/* Efectos para las etiquetas */
+/* Efectos para las etiquetas mejoradas */
 .melifera-tag {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 600;
   color: white;
-  background-color: #10b981;
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
-  transition: all 0.2s ease;
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .melifera-tag:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.4);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 15px rgba(16, 185, 129, 0.4);
 }
 
-/* Estilos para mejorar la visualización en dispositivos móviles */
+.melifera-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.melifera-tag:hover::before {
+  left: 100%;
+}
+
+/* Estilos para el calendario de floración */
+.melifera-calendar-month {
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.melifera-calendar-month:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.melifera-calendar-tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 20;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.melifera-calendar-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Efectos para gradientes de fondo */
+.melifera-gradient-bg {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Estilos para tarjetas taxonómicas mejoradas */
+.melifera-taxonomy-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.melifera-taxonomy-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.melifera-taxonomy-card:hover::before {
+  opacity: 1;
+}
+
+.melifera-taxonomy-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Efectos para iconos flotantes */
+.melifera-floating-icon {
+  display: inline-block;
+  animation: floatUp 2s ease-in-out infinite;
+}
+
+.melifera-floating-icon:nth-child(even) {
+  animation-delay: 1s;
+}
+
+/* Estilos para mejorar la legibilidad */
+.melifera-text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.melifera-glass-effect {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive design mejorado */
+@media (max-width: 1024px) {
+  .melifera-lg-flex-col {
+    flex-direction: column !important;
+  }
+  
+  .melifera-lg-w-full {
+    width: 100% !important;
+  }
+}
+
 @media (max-width: 768px) {
   .melifera-mobile-padding {
-    padding: 0.75rem;
+    padding: 1rem;
   }
   
   .melifera-mobile-stack {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
   }
   
   .melifera-mobile-compact h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
   
   .melifera-mobile-compact h3 {
+    font-size: 1.125rem;
+  }
+  
+  .melifera-mobile-compact h4 {
     font-size: 1rem;
   }
+  
+  .melifera-calendar-month {
+    min-height: 40px;
+    font-size: 0.75rem;
+  }
+  
+  .melifera-taxonomy-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .melifera-mobile-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .melifera-mobile-text-center {
+    text-align: center;
+  }
+  
+  .melifera-calendar-month {
+    min-height: 36px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Efectos de carga */
+.melifera-loading {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.melifera-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efectos para botones e interacciones */
+.melifera-interactive {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.melifera-interactive:hover {
+  transform: scale(1.02);
+}
+
+.melifera-interactive:active {
+  transform: scale(0.98);
+}
+
+/* Efectos de selección y focus */
+.melifera-focusable:focus {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+/* Animaciones para elementos específicos */
+.melifera-pulse-border {
+  position: relative;
+}
+
+.melifera-pulse-border::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #10b981, #3b82f6, #10b981);
+  border-radius: inherit;
+  opacity: 0;
+  animation: pulseBorder 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes pulseBorder {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* Utilidades adicionales */
+.melifera-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.melifera-line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.melifera-line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
