@@ -14,7 +14,7 @@ export default function HistoriaAbeja() {
   return (
     <div className="flex h-full w-full bg-white overflow-hidden">
       {/* Sección izquierda - Contenido de texto */}
-      <div className="w-2/5 flex items-start justify-center px-4 pt-8 pb-2 relative">
+      <div className="w-2/5 flex items-start justify-center px-4 pt-4 pb-2 relative">
         {/* Contenido centrado */}
         <div className="flex items-start justify-center w-full">
           <div className="flex-1 max-w-lg flex flex-col">
@@ -24,7 +24,7 @@ export default function HistoriaAbeja() {
                 isVisible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
               }`}
               style={{ 
-                fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)',
+                fontSize: 'clamp(3rem, 5.2vw, 4.2rem)',
                 transitionDelay: '200ms'
               }}
             >
@@ -39,10 +39,10 @@ export default function HistoriaAbeja() {
                 }`}
                 style={{ transitionDelay: '600ms' }}
               >
-                <div className={`w-3 h-3 bg-gray-800 rounded-full mr-4 transform transition-all duration-500 ease-out ${
+                <div className={`w-4 h-4 bg-gray-800 rounded-full mr-5 transform transition-all duration-500 ease-out ${
                   isVisible ? 'scale-100' : 'scale-0'
                 }`} style={{ transitionDelay: '800ms' }}></div>
-                <span className="text-gray-800 font-medium" style={{ fontSize: 'clamp(1.3rem, 2.8vw, 1.6rem)' }}>
+                <span className="text-gray-800 font-medium" style={{ fontSize: 'clamp(1.5rem, 3.2vw, 1.9rem)' }}>
                   Orígenes de las abejas
                 </span>
               </div>
@@ -52,10 +52,10 @@ export default function HistoriaAbeja() {
                 }`}
                 style={{ transitionDelay: '900ms' }}
               >
-                <div className={`w-3 h-3 bg-gray-800 rounded-full mr-4 transform transition-all duration-500 ease-out ${
+                <div className={`w-4 h-4 bg-gray-800 rounded-full mr-5 transform transition-all duration-500 ease-out ${
                   isVisible ? 'scale-100' : 'scale-0'
                 }`} style={{ transitionDelay: '1100ms' }}></div>
-                <span className="text-gray-800 font-medium" style={{ fontSize: 'clamp(1.3rem, 2.8vw, 1.6rem)' }}>
+                <span className="text-gray-800 font-medium" style={{ fontSize: 'clamp(1.5rem, 3.2vw, 1.9rem)' }}>
                   Evolución
                 </span>
               </div>
@@ -63,7 +63,7 @@ export default function HistoriaAbeja() {
             
             {/* Marco decorativo con animación de zoom y fade */}
             <div 
-              className={`relative w-80 h-48 mb-3 ml-40 transform transition-all duration-1000 ease-out ${
+              className={`relative w-96 h-56 mb-3 ml-40 transform transition-all duration-1000 ease-out ${
                 isVisible ? 'scale-100 opacity-100 rotate-0' : 'scale-75 opacity-0 rotate-3'
               }`}
               style={{ transitionDelay: '1200ms' }}
@@ -84,12 +84,12 @@ export default function HistoriaAbeja() {
             
             {/* Autor fuera del marco con animación de fade desde abajo */}
             <div 
-              className={`ml-40 w-80 transform transition-all duration-800 ease-out ${
+              className={`ml-40 w-96 transform transition-all duration-800 ease-out ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}
               style={{ transitionDelay: '1500ms' }}
             >
-              <p className="text-gray-800 font-semibold text-center" style={{ fontSize: 'clamp(1rem, 2vw, 1.3rem)' }}>
+              <p className="text-gray-800 font-semibold text-center" style={{ fontSize: 'clamp(1.2rem, 2.3vw, 1.5rem)' }}>
                 Marcelino Claret Merino Dr.
               </p>
             </div>
@@ -99,19 +99,19 @@ export default function HistoriaAbeja() {
         {/* Texto "SECCIÓN I" con animación del cuadrado y texto rotado */}
         <div className="absolute left-0 bottom-0">
           <div 
-            className={`w-6 h-6 bg-green-500 transform transition-all duration-700 ease-out ${
+            className={`w-7 h-7 bg-green-500 transform transition-all duration-700 ease-out ${
               isVisible ? 'scale-100 rotate-0' : 'scale-0 rotate-45'
             }`}
             style={{ transitionDelay: '400ms' }}
           ></div>
           <div 
-            className={`absolute left-8 bottom-8 transform transition-all duration-800 ease-out ${
+            className={`absolute left-9 bottom-9 transform transition-all duration-800 ease-out ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
             }`}
             style={{ transitionDelay: '700ms' }}
           >
             <span 
-              className="text-gray-800 font-black tracking-wider text-lg whitespace-nowrap" 
+              className="text-gray-800 font-black tracking-wider text-xl whitespace-nowrap" 
               style={{ 
                 transform: 'rotate(270deg)', 
                 transformOrigin: 'left bottom', 
