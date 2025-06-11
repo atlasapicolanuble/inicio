@@ -1,0 +1,2130 @@
+/* Atlas.css - CSS Responsive Mejorado */
+
+/* Variables CSS para consistencia */
+:root {
+  --header-height-mobile: 80px;
+  --header-height-tablet: 90px;
+  --header-height-desktop: 100px;
+  --header-height-large: 110px;
+  
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  
+  --border-radius-sm: 0.375rem;
+  --border-radius: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+  
+  /* Colores del tema */
+  --color-green-primary: #16a34a;
+  --color-green-hover: #15803d;
+  --color-green-light: #f0fdf4;
+  --color-nav-bg: #000000;
+  --color-nav-indicator: #10b981;
+}
+
+/* Reset y base */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Contenedor principal del atlas */
+.atlas-container {
+  height: 100vh;
+  height: var(--vh, 100vh);
+  max-height: 100vh;
+  max-height: var(--vh, 100vh);
+  overflow: hidden;
+}
+
+/* ============================
+   HEADER STYLES - RESPONSIVE
+   ============================ */
+
+.atlas-header {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 50;
+}
+
+/* Header principal */
+.atlas-header-main {
+  background: var(--color-green-primary);
+  color: white;
+  padding: var(--spacing-2) var(--spacing-4);
+}
+
+.atlas-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.atlas-logo-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.atlas-logo {
+  height: 2rem; /* Más delgado */
+  object-fit: contain;
+}
+
+.atlas-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  margin-left: var(--spacing-3);
+}
+
+.atlas-header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.atlas-control-btn {
+  color: white;
+  padding: var(--spacing-1);
+  border-radius: var(--border-radius);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.atlas-control-btn:hover {
+  background: var(--color-green-hover);
+}
+
+/* Navegación */
+.atlas-nav {
+  background: var(--color-nav-bg);
+  color: white;
+  position: relative;
+}
+
+.nav-container {
+  position: relative;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.nav-container::-webkit-scrollbar {
+  display: none;
+}
+
+.atlas-nav-list {
+  display: flex;
+  justify-content: center;
+  min-width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.atlas-nav-btn {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+  color: #d1d5db; /* gray-300 */
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.atlas-nav-btn:hover,
+.atlas-nav-btn.active {
+  color: white;
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background: var(--color-nav-indicator);
+  z-index: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ============================
+   CONTENT AREA
+   ============================ */
+
+.atlas-content {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.atlas-main-content {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ============================
+   SIDEBAR
+   ============================ */
+
+.atlas-sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: #f0fdf4; /* green-50 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 40;
+  width: 75%;
+}
+
+.atlas-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.atlas-sidebar-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: #166534; /* green-800 */
+}
+
+.atlas-sidebar-content {
+  padding: var(--spacing-4);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.atlas-sidebar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.atlas-sidebar-btn {
+  width: 100%;
+  text-align: left;
+  padding: var(--spacing-3);
+  border-radius: var(--border-radius);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #374151; /* gray-700 */
+}
+
+.atlas-sidebar-btn:hover {
+  background: #dcfce7; /* green-100 */
+}
+
+.atlas-sidebar-btn.active {
+  background: #bbf7d0; /* green-200 */
+  color: #166534; /* green-800 */
+  font-weight: 500;
+}
+
+/* Subnav en sidebar */
+.atlas-sidebar-subnav {
+  padding-left: var(--spacing-6);
+  margin-top: var(--spacing-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.atlas-sidebar-subnav .atlas-sidebar-btn {
+  padding: var(--spacing-1) var(--spacing-3);
+  font-size: var(--font-size-sm);
+  color: #4b5563; /* gray-600 */
+}
+
+.atlas-sidebar-subnav .atlas-sidebar-btn:hover {
+  background: #f0fdf4; /* green-50 */
+}
+
+.atlas-sidebar-subnav .atlas-sidebar-btn.active {
+  background: #dcfce7; /* green-100 */
+  color: #166534; /* green-800 */
+}
+
+/* ============================
+   NAVIGATION CONTROLS
+   ============================ */
+
+.atlas-nav-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--spacing-3);
+  transform: translateY(-50%);
+  z-index: 30;
+  pointer-events: none;
+}
+
+.atlas-nav-arrow {
+  background: #16a34a; /* green-600 */
+  color: white;
+  padding: var(--spacing-2);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+  pointer-events: auto;
+}
+
+.atlas-nav-arrow:hover {
+  background: #15803d; /* green-700 */
+}
+
+/* ============================
+   PAGE INDICATOR
+   ============================ */
+
+.atlas-page-indicator {
+  position: absolute;
+  bottom: var(--spacing-4);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 30;
+}
+
+.atlas-indicator-badge {
+  background: rgba(22, 101, 52, 0.9); /* green-800 with opacity */
+  color: white;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: 9999px;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================
+   MELIFERA PAGE STYLES
+   ============================ */
+
+.melifera-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.melifera-image-panel {
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.melifera-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.5s ease-out;
+}
+
+.melifera-info-panel {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-4);
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  overflow-y: auto;
+}
+
+.melifera-section {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-3);
+  border: 1px solid #dcfce7;
+  margin-bottom: var(--spacing-3);
+}
+
+.melifera-section:last-child {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.melifera-section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: #166534; /* green-800 */
+  margin-bottom: var(--spacing-2);
+  display: flex;
+  align-items: center;
+}
+
+.melifera-section-icon {
+  margin-right: var(--spacing-2);
+}
+
+/* Taxonomía Grid */
+.melifera-taxonomy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-2);
+}
+
+.melifera-taxonomy-item {
+  background: linear-gradient(135deg, white 0%, #f9fafb 100%);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2);
+  border-left: 3px solid;
+}
+
+.melifera-taxonomy-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: #374151; /* gray-700 */
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--spacing-1);
+}
+
+.melifera-taxonomy-value {
+  font-size: var(--font-size-sm);
+  color: #111827; /* gray-900 */
+  font-weight: 500;
+}
+
+/* Características */
+.melifera-characteristics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.melifera-characteristic {
+  background: linear-gradient(90deg, #f9fafb 0%, white 100%);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2);
+  border-left: 3px solid #86efac; /* green-300 */
+}
+
+.melifera-characteristic-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.melifera-characteristic-icon {
+  font-size: var(--font-size-sm);
+  margin-right: var(--spacing-2);
+  margin-top: var(--spacing-1);
+}
+
+.melifera-characteristic-text {
+  flex: 1;
+}
+
+.melifera-characteristic-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: #374151; /* gray-700 */
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--spacing-1);
+}
+
+.melifera-characteristic-value {
+  font-size: var(--font-size-xs);
+  color: #111827; /* gray-900 */
+  font-weight: 500;
+}
+
+/* Calendario de floración */
+.melifera-calendar {
+  background: #0d1014;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e5e5;
+}
+
+.melifera-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-1);
+  margin-bottom: var(--spacing-2);
+}
+
+.melifera-month {
+  text-align: center;
+}
+
+.melifera-month-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: #4b5563; /* gray-600 */
+  margin-bottom: var(--spacing-1);
+}
+
+.melifera-month-bar {
+  height: 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border: 1px solid #d1d5db; /* gray-200 */
+}
+
+.melifera-month-bar:hover {
+  transform: scale(1.1);
+}
+
+.melifera-tooltip {
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2937; /* gray-800 */
+  color: white;
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.melifera-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid transparent;
+  border-top-color: #1f2937;
+}
+
+/* Leyenda */
+.melifera-legend {
+  background: #f9fafb; /* gray-50 */
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2);
+}
+
+.melifera-legend-title {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: #374151; /* gray-700 */
+  margin-bottom: var(--spacing-1);
+  text-align: center;
+}
+
+.melifera-legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-1);
+  font-size: var(--font-size-xs);
+}
+
+.melifera-legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.melifera-legend-color {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--border-radius);
+  margin-right: var(--spacing-1);
+  border: 1px solid #d1d5db; /* gray-300 */
+}
+
+.melifera-legend-label {
+  font-weight: 500;
+}
+
+/* Importancia melífera */
+.melifera-importance {
+  background: linear-gradient(90deg, #fefce8 0%, #fef3c7 100%);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2);
+  border-left: 3px solid #fbbf24; /* yellow-400 */
+}
+
+.melifera-importance-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.melifera-importance-icon {
+  font-size: var(--font-size-sm);
+  margin-right: var(--spacing-2);
+  margin-top: var(--spacing-1);
+}
+
+.melifera-importance-text {
+  flex: 1;
+}
+
+.melifera-importance-title {
+  font-weight: 700;
+  color: #92400e; /* yellow-800 */
+  margin-bottom: var(--spacing-1);
+  font-size: var(--font-size-xs);
+}
+
+.melifera-importance-description {
+  color: #78350f; /* yellow-900 */
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+}
+
+/* ============================
+   MEDIA QUERIES
+   ============================ */
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  :root {
+    --font-size-xs: 0.7rem;
+    --font-size-sm: 0.8rem;
+    --font-size-base: 0.9rem;
+    --font-size-lg: 1rem;
+    --font-size-xl: 1.1rem;
+    --spacing-1: 0.2rem;
+    --spacing-2: 0.4rem;
+    --spacing-3: 0.6rem;
+    --spacing-4: 0.8rem;
+  }
+
+  .atlas-header-main {
+    padding: var(--spacing-2) var(--spacing-3);
+  }
+
+  .atlas-logo {
+    height: 2rem;
+  }
+
+  .atlas-title {
+    font-size: var(--font-size-base);
+    margin-left: var(--spacing-2);
+  }
+
+  .atlas-nav-btn {
+    padding: var(--spacing-2) var(--spacing-3);
+  }
+
+  .atlas-sidebar {
+    width: 85%;
+  }
+
+  .melifera-container {
+    flex-direction: column;
+  }
+
+  .melifera-image-panel,
+  .melifera-info-panel {
+    width: 100%;
+    height: 50%;
+  }
+
+  .melifera-taxonomy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .melifera-calendar-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+  }
+
+  .melifera-month-label {
+    font-size: 0.6rem;
+  }
+
+  .melifera-month-bar {
+    height: 1rem;
+  }
+}
+
+/* Móviles grandes y tablets pequeñas (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  :root {
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.85rem;
+    --font-size-base: 0.95rem;
+    --font-size-lg: 1.1rem;
+    --font-size-xl: 1.2rem;
+  }
+
+  .atlas-logo {
+    height: 2.25rem;
+  }
+
+  .atlas-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .atlas-sidebar {
+    width: 320px;
+  }
+
+  .melifera-calendar-grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-1);
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --font-size-xs: 0.8rem;
+    --font-size-sm: 0.9rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.1rem;
+    --font-size-xl: 1.2rem;
+    --spacing-4: 1rem;
+    --spacing-6: 1.4rem;
+  }
+
+  .atlas-header-main {
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .atlas-logo {
+    height: 2.25rem;
+  }
+
+  .atlas-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .atlas-nav-btn {
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .atlas-sidebar {
+    width: 320px;
+  }
+
+  .melifera-info-panel {
+    padding: var(--spacing-4);
+  }
+
+  .melifera-section {
+    padding: var(--spacing-3);
+  }
+}
+
+/* Laptops pequeñas (1025px - 1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  :root {
+    --font-size-xs: 0.85rem;
+    --font-size-sm: 0.95rem;
+    --font-size-base: 1.05rem;
+    --font-size-lg: 1.15rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.4rem;
+    --spacing-4: 1.1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.4rem;
+  }
+
+  .atlas-header-main {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+
+  .atlas-logo {
+    height: 2.5rem;
+  }
+
+  .atlas-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .atlas-nav-btn {
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .atlas-sidebar {
+    width: 350px;
+  }
+
+  .melifera-info-panel {
+    padding: var(--spacing-5);
+  }
+
+  .melifera-section {
+    padding: var(--spacing-4);
+    margin-bottom: var(--spacing-3);
+  }
+
+  .melifera-section-title {
+    font-size: var(--font-size-base);
+  }
+
+  .melifera-taxonomy-value {
+    font-size: var(--font-size-base);
+  }
+
+  .melifera-characteristic-value {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Laptops grandes y desktops (1367px - 1920px) */
+@media (min-width: 1367px) and (max-width: 1920px) {
+  :root {
+    --font-size-xs: 0.9rem;
+    --font-size-sm: 1rem;
+    --font-size-base: 1.1rem;
+    --font-size-lg: 1.2rem;
+    --font-size-xl: 1.35rem;
+    --font-size-2xl: 1.5rem;
+    --spacing-4: 1.2rem;
+    --spacing-5: 1.4rem;
+    --spacing-6: 1.6rem;
+    --spacing-8: 2rem;
+  }
+
+  .atlas-header-main {
+    padding: var(--spacing-3) var(--spacing-5);
+  }
+
+  .atlas-logo {
+    height: 2.75rem;
+  }
+
+  .atlas-title {
+    font-size: var(--font-size-xl);
+    margin-left: var(--spacing-4);
+  }
+
+  .atlas-nav-btn {
+    padding: var(--spacing-3) var(--spacing-5);
+    font-size: var(--font-size-base);
+  }
+
+  .atlas-sidebar {
+    width: 380px;
+  }
+
+  .atlas-sidebar-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .melifera-info-panel {
+    padding: var(--spacing-6);
+  }
+
+  .melifera-section {
+    padding: var(--spacing-5);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .melifera-section-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-3);
+  }
+
+  .melifera-taxonomy-item,
+  .melifera-characteristic {
+    padding: var(--spacing-3);
+  }
+
+  .melifera-taxonomy-label,
+  .melifera-characteristic-label {
+    font-size: var(--font-size-sm);
+  }
+
+  .melifera-taxonomy-value,
+  .melifera-characteristic-value {
+    font-size: var(--font-size-lg);
+  }
+
+  .melifera-month-bar {
+    height: 1.75rem;
+  }
+
+  .melifera-importance-title {
+    font-size: var(--font-size-sm);
+  }
+
+  .melifera-importance-description {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Monitores muy grandes (1921px en adelante) */
+@media (min-width: 1921px) {
+  :root {
+    --font-size-xs: 1rem;
+    --font-size-sm: 1.1rem;
+    --font-size-base: 1.2rem;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 1.7rem;
+    --font-size-3xl: 2rem;
+    --spacing-4: 1.3rem;
+    --spacing-5: 1.6rem;
+    --spacing-6: 1.8rem;
+    --spacing-8: 2.2rem;
+    --spacing-10: 2.8rem;
+  }
+
+  .atlas-header-main {
+    padding: var(--spacing-4) var(--spacing-6);
+  }
+
+  .atlas-logo {
+    height: 3rem;
+  }
+
+  .atlas-title {
+    font-size: var(--font-size-2xl);
+    margin-left: var(--spacing-5);
+  }
+
+  .atlas-nav-btn {
+    padding: var(--spacing-4) var(--spacing-6);
+    font-size: var(--font-size-lg);
+  }
+
+  .atlas-sidebar {
+    width: 420px;
+  }
+
+  .atlas-sidebar-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .melifera-info-panel {
+    padding: var(--spacing-8);
+  }
+
+  .melifera-section {
+    padding: var(--spacing-6);
+    margin-bottom: var(--spacing-5);
+  }
+
+  .melifera-section-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .melifera-taxonomy-item,
+  .melifera-characteristic {
+    padding: var(--spacing-4);
+  }
+
+  .melifera-taxonomy-label,
+  .melifera-characteristic-label {
+    font-size: var(--font-size-base);
+  }
+
+  .melifera-taxonomy-value,
+  .melifera-characteristic-value {
+    font-size: var(--font-size-xl);
+  }
+
+  .melifera-month-bar {
+    height: 2rem;
+  }
+
+  .melifera-importance-title {
+    font-size: var(--font-size-base);
+  }
+
+  .melifera-importance-description {
+    font-size: var(--font-size-base);
+  }
+
+  .melifera-nav-arrow {
+    padding: var(--spacing-3);
+  }
+
+  .atlas-indicator-badge {
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* ============================
+   UTILIDADES RESPONSIVE
+   ============================ */
+
+/* Overlay móvil */
+.mobile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 30;
+}
+
+@media (min-width: 768px) {
+  .mobile-overlay {
+    display: none;
+  }
+}
+
+/* Scrollbar personalizado */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #86efac #f0fdf4;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f0fdf4;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #86efac;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4ade80;
+}
+
+/* Animaciones suaves */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================
+   PRINT STYLES
+   ============================ */
+
+@media print {
+  .atlas-header,
+  .atlas-nav-controls,
+  .atlas-page-indicator,
+  .atlas-sidebar {
+    display: none !important;
+  }
+
+  .atlas-content {
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .melifera-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .melifera-image-panel,
+  .melifera-info-panel {
+    width: 100%;
+    height: auto;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+}
+
+/* ============================
+   ACCESIBILIDAD
+   ============================ */
+
+/* Focus states mejorados */
+.atlas-control-btn:focus,
+.atlas-nav-btn:focus,
+.atlas-sidebar-btn:focus,
+.atlas-nav-arrow:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Reducir movimiento para usuarios sensibles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .melifera-month-bar:hover {
+    transform: none;
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  .atlas-nav-btn {
+    border: 1px solid currentColor;
+  }
+
+  .melifera-section {
+    border: 2px solid #000;
+  }
+
+  .melifera-month-bar {
+    border: 2px solid #000;
+  }
+}
+
+/* ============================
+   LANDSCAPE ORIENTATION
+   ============================ */
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .atlas-header-main {
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .atlas-logo {
+    height: 1.75rem;
+  }
+
+  .atlas-title {
+    font-size: var(--font-size-base);
+  }
+
+  .atlas-nav-btn {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .melifera-info-panel {
+    padding: var(--spacing-3);
+  }
+
+  .melifera-section {
+    padding: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
+  }
+}
+
+/* ============================
+   DARK MODE SUPPORT
+   ============================ */
+
+@media (prefers-color-scheme: dark) {
+  .atlas-header-main {
+    background: #065f46; /* green-800 */
+  }
+
+  .atlas-nav {
+    background: #111827; /* gray-900 */
+  }
+
+  .atlas-sidebar {
+    background: #064e3b; /* green-900 */
+    color: #f0fdf4; /* green-50 */
+  }
+
+  .atlas-sidebar-title {
+    color: #86efac; /* green-300 */
+  }
+
+  .atlas-sidebar-btn {
+    color: #d1fae5; /* green-100 */
+  }
+
+  .atlas-sidebar-btn:hover {
+    background: #065f46; /* green-800 */
+  }
+
+  .atlas-sidebar-btn.active {
+    background: #047857; /* green-700 */
+    color: #86efac; /* green-300 */
+  }
+
+  .melifera-info-panel {
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  }
+
+  .melifera-section {
+    background: #1f2937; /* gray-800 */
+    border-color: #047857; /* green-700 */
+    color: #f9fafb; /* gray-50 */
+  }
+
+  .melifera-section-title {
+    color: #86efac; /* green-300 */
+  }
+
+  .melifera-taxonomy-item,
+  .melifera-characteristic {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  }
+
+  .melifera-taxonomy-label,
+  .melifera-characteristic-label {
+    color: #d1d5db; /* gray-300 */
+  }
+
+  .melifera-taxonomy-value,
+  .melifera-characteristic-value {
+    color: #f9fafb; /* gray-50 */
+  }
+
+  .melifera-legend {
+    background: #374151; /* gray-700 */
+  }
+
+  .melifera-legend-title {
+    color: #d1d5db; /* gray-300 */
+  }
+
+  .melifera-importance {
+    background: linear-gradient(90deg, #451a03 0%, #78350f 100%);
+  }
+
+  .melifera-importance-title {
+    color: #fbbf24; /* yellow-400 */
+  }
+
+  .melifera-importance-description {
+    color: #fde047; /* yellow-300 */
+  }
+}
+
+/* ============================
+   PERFORMANCE OPTIMIZATIONS
+   ============================ */
+
+/* GPU acceleration para animaciones */
+.atlas-nav-arrow,
+.melifera-month-bar,
+.nav-indicator {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimización de repaint */
+.atlas-sidebar,
+.atlas-nav-controls {
+  contain: layout style paint;
+}
+
+/* Estilos para la taxonomía vertical estilo BeeAtlas */
+/* Estilos para la taxonomía vertical estilo BeeAtlas */
+
+.taxonomy-vertical-container {
+  background: linear-gradient(135deg, #f8fffe 0%, #f0f9f6 100%);
+  border-radius: 12px;
+  padding: 5px;
+  margin: -7px 0;
+  border: 1px solid #e5f3ea;
+}
+
+.taxonomy-header {
+  background: #2d5a2d;
+  color: white;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+
+
+/* Sección inferior con información adicional y valor apícola */
+.taxonomy-bottom-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 1px;
+  padding-top: 0px;
+  border-top: 1px solid #d1e7dd;
+}
+
+.taxonomy-additional-info {
+  flex: 1;
+}
+
+/* Valor Apícola posicionado al lado de la información adicional */
+.apicolage-side-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.half-donut-chart {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* Textos curvados dentro del semicírculo */
+.curved-text {
+  font-size: 12px;
+  font-weight: 600;
+  fill: white;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.nectar-text {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.polen-text {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.apicolage-text-below {
+  font-weight: bold;
+  font-size: 12px;
+  color: #8b6914;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.taxonomy-item {
+  background: linear-gradient(135deg, #4a7c59 0%, #5a8a69 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 240px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.taxonomy-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.taxonomy-item.orden {
+  background: linear-gradient(135deg, #2d5a2d 0%, #3d6a3d 100%);
+}
+
+.taxonomy-item.familia {
+  background: linear-gradient(135deg, #4a7c59 0%, #5a8a69 100%);
+}
+
+.taxonomy-item.genero {
+  background: linear-gradient(135deg, #6b9b7a 0%, #7bab8a 100%);
+}
+
+.taxonomy-item.especie {
+  background: linear-gradient(135deg, #8bb99a 0%, #9bc9aa 100%);
+}
+
+.taxonomy-item::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+
+
+
+.taxonomy-item.orden::after {
+  border-top: 8px solid #3d6a3d;
+}
+
+.taxonomy-item.familia::after {
+  border-top: 8px solid #5a8a69;
+}
+
+.taxonomy-item.genero::after {
+  border-top: 8px solid #7bab8a;
+}
+
+.taxonomy-item.especie::after {
+  border-top: 8px solid #9bc9aa;
+}
+
+.taxonomy-item:last-child::after {
+  display: none;
+}
+
+.taxonomy-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  opacity: 0.9;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.taxonomy-value {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.taxonomy-connector {
+  width: 2px;
+  height: 8px;
+  background: #4a7c59;
+  margin: -4px 0;
+}
+
+.taxonomy-additional-info {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #d1e7dd;
+}
+
+.taxonomy-info-item {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #2d5a2d;
+  line-height: 1.4;
+}
+
+.taxonomy-info-item strong {
+  color: #1a4a1a;
+  font-weight: 600;
+}
+
+.taxonomy-chain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.half-donut-chart {
+  position: relative;
+  display: inline-block;
+}
+
+.half-donut-section {
+  transition: all 0.8s ease-in-out;
+}
+
+.nectar-arc {
+  opacity: 0.9;
+}
+
+.polen-arc {
+  opacity: 0.9;
+}
+
+.apicolage-text-below {
+  font-weight: bold;
+  font-size: 14px;
+  color: #8b6914;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+/* Animaciones */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.taxonomy-item {
+  animation: slideInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.taxonomy-item:nth-child(1) { animation-delay: 0.1s; }
+.taxonomy-item:nth-child(3) { animation-delay: 0.2s; }
+.taxonomy-item:nth-child(5) { animation-delay: 0.3s; }
+.taxonomy-item:nth-child(7) { animation-delay: 0.4s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .taxonomy-vertical-container {
+    padding: 12px;
+    margin-top: -30px;
+    max-height: 320px;
+  }
+  
+  .taxonomy-bottom-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  
+  .taxonomy-item {
+    min-width: 200px;
+    padding: 6px 16px;
+  }
+  
+  .taxonomy-value {
+    font-size: 11px;
+  }
+  
+  .taxonomy-label {
+    font-size: 9px;
+  }
+  
+  .taxonomy-chain {
+    gap: 2px;
+  }
+  
+  .taxonomy-connector {
+    height: 4px;
+  }
+  
+  .taxonomy-info-item {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  
+  .apicolage-side-container {
+    min-width: auto;
+  }
+  
+  .half-donut-chart svg {
+    width: 80px;
+    height: 53px;
+  }
+  
+  .curved-text {
+    font-size: 8px;
+  }
+  
+  .apicolage-text-below {
+    font-size: 9px;
+  }
+}/* CSS para el splash de la abeja animada */
+.bee-float {
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-10deg) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) rotate(-10deg) translateY(-4px);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ============================
+   SPLASH SCREEN RESPONSIVE
+   ============================ */
+
+/* Variables para el splash */
+:root {
+  --splash-logo-height: 8rem;
+  --splash-container-width: 20rem;
+  --splash-container-height: 5rem;
+  --splash-bee-size: 3rem;
+  --splash-bar-height: 0.5rem;
+  --splash-font-size: 1rem;
+  --splash-spacing: 1.5rem;
+}
+
+/* Contenedor principal del splash */
+.splash-container {
+  position: fixed;
+  inset: 0;
+  background: #f0fdf4; /* green-50 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: var(--spacing-4);
+}
+
+/* Logo INIA */
+.splash-logo-container {
+  position: relative;
+  margin-bottom: var(--splash-spacing);
+}
+
+.splash-logo {
+  height: var(--splash-logo-height);
+  width: auto;
+  object-fit: contain;
+}
+
+/* Contenedor de la abeja y barra de progreso */
+.splash-progress-container {
+  position: relative;
+  width: var(--splash-container-width);
+  height: var(--splash-container-height);
+  margin-bottom: var(--splash-spacing);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Barra de progreso */
+.splash-progress-bg {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  height: var(--splash-bar-height);
+  background: #d1d5db; /* gray-300 */
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.splash-progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #fbbf24, #f59e0b); /* yellow-400 to yellow-500 */
+  border-radius: 9999px;
+  transition: all 0.3s ease-out;
+  position: relative;
+}
+
+.splash-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3));
+  border-radius: 9999px;
+}
+
+/* Abeja flotante */
+.splash-bee {
+  position: absolute;
+  top: 0;
+  width: var(--splash-bee-size);
+  height: var(--splash-bee-size);
+  object-fit: contain;
+  transition: all 0.3s ease-out;
+  z-index: 10;
+}
+
+/* Texto de progreso */
+.splash-text {
+  margin-top: var(--splash-spacing);
+  color: #4b5563; /* gray-600 */
+  font-weight: 500;
+  font-size: var(--splash-font-size);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Animaciones */
+.bee-float {
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-10deg) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) rotate(-10deg) translateY(-4px);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================
+   RESPONSIVE BREAKPOINTS
+   ============================ */
+
+/* Móviles pequeños (320px - 480px) */
+@media (max-width: 480px) {
+  :root {
+    --splash-logo-height: 4rem;
+    --splash-container-width: 16rem;
+    --splash-container-height: 4rem;
+    --splash-bee-size: 2rem;
+    --splash-bar-height: 0.375rem;
+    --splash-font-size: 0.875rem;
+    --splash-spacing: 1rem;
+  }
+
+  .splash-container {
+    padding: var(--spacing-3);
+  }
+
+  .splash-progress-bg {
+    bottom: 0.75rem;
+  }
+
+  .splash-text {
+    font-size: var(--splash-font-size);
+    padding: 0 var(--spacing-2);
+  }
+}
+
+/* Móviles grandes (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  :root {
+    --splash-logo-height: 6rem;
+    --splash-container-width: 18rem;
+    --splash-container-height: 4.5rem;
+    --splash-bee-size: 2.5rem;
+    --splash-bar-height: 0.4rem;
+    --splash-font-size: 0.95rem;
+    --splash-spacing: 1.25rem;
+  }
+
+  .splash-progress-bg {
+    bottom: 0.875rem;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --splash-logo-height: 7rem;
+    --splash-container-width: 19rem;
+    --splash-container-height: 4.75rem;
+    --splash-bee-size: 2.75rem;
+    --splash-bar-height: 0.45rem;
+    --splash-font-size: 1rem;
+    --splash-spacing: 1.4rem;
+  }
+
+  .splash-progress-bg {
+    bottom: 0.9rem;
+  }
+}
+
+/* Laptops pequeñas (1025px - 1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  :root {
+    --splash-logo-height: 8rem;
+    --splash-container-width: 20rem;
+    --splash-container-height: 5rem;
+    --splash-bee-size: 3rem;
+    --splash-bar-height: 0.5rem;
+    --splash-font-size: 1.05rem;
+    --splash-spacing: 1.5rem;
+  }
+}
+
+/* Laptops grandes y desktops (1367px - 1920px) */
+@media (min-width: 1367px) and (max-width: 1920px) {
+  :root {
+    --splash-logo-height: 9rem;
+    --splash-container-width: 22rem;
+    --splash-container-height: 5.5rem;
+    --splash-bee-size: 3.25rem;
+    --splash-bar-height: 0.55rem;
+    --splash-font-size: 1.1rem;
+    --splash-spacing: 1.75rem;
+  }
+
+  .splash-progress-bg {
+    bottom: 1.1rem;
+  }
+}
+
+/* Monitores muy grandes (1921px - 2560px) */
+@media (min-width: 1921px) and (max-width: 2560px) {
+  :root {
+    --splash-logo-height: 10rem;
+    --splash-container-width: 24rem;
+    --splash-container-height: 6rem;
+    --splash-bee-size: 3.5rem;
+    --splash-bar-height: 0.6rem;
+    --splash-font-size: 1.2rem;
+    --splash-spacing: 2rem;
+  }
+
+  .splash-progress-bg {
+    bottom: 1.2rem;
+  }
+}
+
+/* Monitores ultra grandes (2561px en adelante) */
+@media (min-width: 2561px) {
+  :root {
+    --splash-logo-height: 12rem;
+    --splash-container-width: 28rem;
+    --splash-container-height: 7rem;
+    --splash-bee-size: 4rem;
+    --splash-bar-height: 0.75rem;
+    --splash-font-size: 1.4rem;
+    --splash-spacing: 2.5rem;
+  }
+
+  .splash-progress-bg {
+    bottom: 1.4rem;
+  }
+
+  .splash-text {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: var(--splash-spacing);
+  }
+}
+
+/* ============================
+   ORIENTACIÓN Y ALTURA
+   ============================ */
+
+/* Paisaje en móviles y tablets (altura limitada) */
+@media (orientation: landscape) and (max-height: 600px) {
+  :root {
+    --splash-logo-height: 3.5rem;
+    --splash-container-width: 18rem;
+    --splash-container-height: 3.5rem;
+    --splash-bee-size: 2rem;
+    --splash-bar-height: 0.375rem;
+    --splash-font-size: 0.875rem;
+    --splash-spacing: 0.75rem;
+  }
+
+  .splash-container {
+    padding: var(--spacing-2);
+  }
+
+  .splash-progress-bg {
+    bottom: 0.6rem;
+  }
+}
+
+/* Tablets en paisaje */
+@media (orientation: landscape) and (min-width: 768px) and (max-height: 1024px) {
+  :root {
+    --splash-logo-height: 5rem;
+    --splash-container-width: 20rem;
+    --splash-container-height: 4rem;
+    --splash-bee-size: 2.5rem;
+    --splash-bar-height: 0.4rem;
+    --splash-font-size: 1rem;
+    --splash-spacing: 1rem;
+  }
+
+  .splash-progress-bg {
+    bottom: 0.8rem;
+  }
+}
+
+/* ============================
+   ALTA DENSIDAD DE PÍXELES
+   ============================ */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .splash-logo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  .splash-bee {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* ============================
+   PREFERENCIAS DE USUARIO
+   ============================ */
+
+/* Reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .bee-float {
+    animation: none;
+  }
+
+  .splash-progress-fill {
+    transition: width 0.1s linear;
+  }
+
+  .splash-bee {
+    transition: left 0.1s linear;
+  }
+
+  .fade-in {
+    animation: none;
+  }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .splash-container {
+    background: #064e3b; /* green-900 */
+  }
+
+  .splash-text {
+    color: #d1fae5; /* green-100 */
+  }
+
+  .splash-progress-bg {
+    background: #374151; /* gray-700 */
+  }
+
+  .splash-progress-fill {
+    background: linear-gradient(to right, #fbbf24, #f59e0b);
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  .splash-progress-bg {
+    background: #000000;
+    border: 2px solid #ffffff;
+  }
+
+  .splash-progress-fill {
+    background: #ffff00;
+  }
+
+  .splash-text {
+    color: #000000;
+    font-weight: 700;
+  }
+}
+
+/* ============================
+   ANIMACIONES MEJORADAS
+   ============================ */
+
+/* Animación de entrada del logo */
+.splash-logo {
+  animation: logoEntrance 1s ease-out;
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Animación de la barra de progreso */
+.splash-progress-fill {
+  position: relative;
+  overflow: hidden;
+}
+
+.splash-progress-fill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ============================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ============================ */
+
+.splash-container {
+  contain: layout style paint;
+  will-change: opacity;
+}
+
+.splash-bee {
+  will-change: transform, left;
+  transform: translateZ(0);
+}
+
+.splash-progress-fill {
+  will-change: width;
+  transform: translateZ(0);
+}
+
+/* ============================
+   FALLBACKS Y COMPATIBILIDAD
+   ============================ */
+
+/* Fallback para navegadores que no soporten CSS Grid */
+.splash-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+/* Fallback para variables CSS */
+@supports not (color: var(--color)) {
+  .splash-logo {
+    height: 8rem;
+  }
+
+  .splash-progress-container {
+    width: 20rem;
+    height: 5rem;
+  }
+
+  .splash-bee {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .splash-progress-bg {
+    height: 0.5rem;
+  }
+
+  .splash-text {
+    font-size: 1rem;
+  }
+}
+
+/* ============================
+   CLASES UTILITARIAS SPLASH
+   ============================ */
+
+.splash-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease-out;
+}
+
+.splash-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.splash-loading {
+  cursor: wait;
+}
+
+/* Estados de carga */
+.splash-progress-container.loading .splash-bee {
+  animation-duration: 1.5s;
+}
+
+.splash-progress-container.complete .splash-bee {
+  transform: translateX(-50%) rotate(0deg) scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
+}

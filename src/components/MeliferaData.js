@@ -2,7 +2,8 @@
 
 /**
  * Datos estructurados para las 17 especies melíferas
- * Datos actualizados según el documento original de especies melíferas
+ * Incluye datos taxonómicos, sinónimo, forma de crecimiento y valores apícolas
+ * Los porcentajes de néctar y polen suman 100%
  */
 const meliferaData = [
   {
@@ -11,10 +12,10 @@ const meliferaData = [
     familia: "Asteraceae",
     genero: "Taraxacum",
     especie: "officinale",
-    nombreComun: "Diente de León",
     sinonimo: "Leontodon taraxacum L.",
     formaCrecimiento: "Hierba perenne",
-    significado: "Planta altamente melífera, es una de las primeras fuentes de néctar y polen en primavera.",
+    nectar: 45, // Porcentaje de valor nectarífero
+    polen: 55, // Porcentaje de valor polinífero (nectar + polen = 100%)
     floracion: [0, 0, 30, 80, 90, 70, 40, 20, 0, 0, 0, 0] // Ene-Dic porcentajes
   },
   {
@@ -23,10 +24,10 @@ const meliferaData = [
     familia: "Quillajaceae",
     genero: "Quillaja",
     especie: "saponaria",
-    nombreComun: "Quillay",
     sinonimo: "Quillaja molinae DC",
     formaCrecimiento: "Árbol",
-    significado: "Proporciona néctar en verano y resina útil para las abejas.",
+    nectar: 60,
+    polen: 40,
     floracion: [0, 0, 0, 0, 20, 60, 80, 100, 90, 60, 20, 0]
   },
   {
@@ -35,10 +36,10 @@ const meliferaData = [
     familia: "Brassicaceae",
     genero: "Raphanus",
     especie: "raphanistrum",
-    nombreComun: "Rábano silvestre",
     sinonimo: "Raphanus sativus var. sylvestris",
     formaCrecimiento: "Hierba anual o bienal",
-    significado: "Aporta polen durante el periodo de floración de cultivos.",
+    nectar: 35,
+    polen: 65,
     floracion: [0, 0, 0, 40, 70, 90, 100, 80, 60, 40, 0, 0]
   },
   {
@@ -47,10 +48,10 @@ const meliferaData = [
     familia: "Lardizabalaceae",
     genero: "Lardizabala",
     especie: "biternata",
-    nombreComun: "Cogüilera",
     sinonimo: "Lardizabala triphylla",
     formaCrecimiento: "Liana leñosa trepadora perenne",
-    significado: "Sus flores ayudan en la biodiversidad del entorno apícola.",
+    nectar: 55,
+    polen: 45,
     floracion: [0, 0, 0, 0, 30, 60, 80, 100, 90, 60, 20, 0]
   },
   {
@@ -59,10 +60,10 @@ const meliferaData = [
     familia: "Asteraceae",
     genero: "Ambrosia",
     especie: "artemisiifolia L.",
-    nombreComun: "Ambrosía",
     sinonimo: "Ambrosia elatior L.",
     formaCrecimiento: "Planta herbácea anual, erecta, muy ramificada",
-    significado: "Fuente de polen, aunque puede generar alergias en humanos.",
+    nectar: 25,
+    polen: 75,
     floracion: [0, 0, 0, 0, 0, 40, 70, 100, 90, 60, 30, 0]
   },
   {
@@ -71,10 +72,10 @@ const meliferaData = [
     familia: "Brassicaceae",
     genero: "Brassica",
     especie: "sp",
-    nombreComun: "Brásica (Nabo)",
-    sinonimo: "Ambrosía (nombre incorrecto en fuente)",
+    sinonimo: "Brassica napus L.",
     formaCrecimiento: "Herbácea anual o bienal, de crecimiento erecto o rastrero",
-    significado: "Importante en zonas agrícolas por su aporte floral para las abejas.",
+    nectar: 40,
+    polen: 60,
     floracion: [0, 0, 20, 60, 90, 100, 80, 60, 40, 20, 0, 0]
   },
   {
@@ -83,10 +84,10 @@ const meliferaData = [
     familia: "Fagaceae",
     genero: "Castanea",
     especie: "sativa",
-    nombreComun: "Castaño",
     sinonimo: "Castaño común",
     formaCrecimiento: "Árbol",
-    significado: "El néctar de sus flores es buscado por las abejas, y el árbol provee sombra al colmenar.",
+    nectar: 55,
+    polen: 45,
     floracion: [0, 0, 0, 0, 0, 40, 80, 100, 60, 20, 0, 0]
   },
   {
@@ -95,10 +96,10 @@ const meliferaData = [
     familia: "Gentianaceae",
     genero: "Centaurium",
     especie: "cachanlahuen",
-    nombreComun: "Canchanlahue",
     sinonimo: "Erythraea chilensis",
     formaCrecimiento: "Hierba anual o bianual, de porte bajo, erecta y ramificada",
-    significado: "Favorece la alimentación de polinizadores en primavera.",
+    nectar: 50,
+    polen: 50,
     floracion: [0, 0, 20, 60, 90, 100, 80, 60, 40, 20, 0, 0]
   },
   {
@@ -107,10 +108,10 @@ const meliferaData = [
     familia: "Onagraceae",
     genero: "Clarkia",
     especie: "tenella",
-    nombreComun: "Huasita",
     sinonimo: "Godetia tenella",
     formaCrecimiento: "Hierba anual, erecta, generalmente ramificada, con flores vistosas",
-    significado: "Atractiva para abejas por sus colores y néctar accesible.",
+    nectar: 45,
+    polen: 55,
     floracion: [0, 0, 0, 30, 70, 100, 90, 80, 60, 30, 0, 0]
   },
   {
@@ -119,10 +120,10 @@ const meliferaData = [
     familia: "Vitaceae",
     genero: "Clematicissus",
     especie: "striata",
-    nombreComun: "Voqui colorado",
     sinonimo: "Clematicissus striata (Ruiz & Pav.) Lombardi",
     formaCrecimiento: "Liana trepadora perenne, leñosa, con zarcillos, de rápido crecimiento",
-    significado: "Aporta cobertura vegetal y alimento para abejas silvestres.",
+    nectar: 50,
+    polen: 50,
     floracion: [0, 0, 0, 20, 50, 80, 100, 90, 70, 40, 0, 0]
   },
   {
@@ -131,10 +132,10 @@ const meliferaData = [
     familia: "Rhamnaceae",
     genero: "Colletia",
     especie: "hysterix",
-    nombreComun: "Yaquil",
     sinonimo: "Colletia brevispina Phil.",
     formaCrecimiento: "Arbusto",
-    significado: "Ofrece refugio y néctar, especialmente en climas secos.",
+    nectar: 55,
+    polen: 45,
     floracion: [0, 0, 0, 0, 40, 70, 90, 100, 80, 50, 20, 0]
   },
   {
@@ -143,10 +144,10 @@ const meliferaData = [
     familia: "Tecophilaeaceae",
     genero: "Conanthera",
     especie: "bifolia",
-    nombreComun: "Viudita",
     sinonimo: "Pajarito de campo",
     formaCrecimiento: "Hierba perenne, rizomatosa, de hojas basales y flores vistosas",
-    significado: "Valiosa por su floración prolongada y resistente.",
+    nectar: 50,
+    polen: 50,
     floracion: [0, 0, 30, 70, 100, 90, 60, 30, 0, 0, 0, 0]
   },
   {
@@ -155,10 +156,10 @@ const meliferaData = [
     familia: "Asteraceae",
     genero: "Cynara",
     especie: "cardunculus",
-    nombreComun: "Cardo de huerta",
     sinonimo: "Carduus lanceolatus L.",
     formaCrecimiento: "Planta herbácea bienal, erecta, muy espinosa, de hasta 1.5 m de altura",
-    significado: "Atrae abejas y otros polinizadores en verano.",
+    nectar: 45,
+    polen: 55,
     floracion: [0, 0, 0, 0, 0, 40, 80, 100, 90, 60, 20, 0]
   },
   {
@@ -167,10 +168,10 @@ const meliferaData = [
     familia: "Boraginaceae",
     genero: "Echium",
     especie: "vulgare",
-    nombreComun: "Lengua de gato",
     sinonimo: "Viborera",
     formaCrecimiento: "Roseta basal el primer año; segundo año, tallo erecto y ramificado",
-    significado: "De alto valor melífero por su prolongada floración.",
+    nectar: 40,
+    polen: 60,
     floracion: [0, 0, 0, 20, 60, 90, 100, 80, 40, 0, 0, 0]
   },
   {
@@ -179,10 +180,10 @@ const meliferaData = [
     familia: "Myrtaceae",
     genero: "Eucalyptus",
     especie: "sp",
-    nombreComun: "Eucalipto",
     sinonimo: "Eucalyptus globulus Labill",
     formaCrecimiento: "Árbol perenne, de gran tamaño, crecimiento rápido, tronco recto y corteza fibrosa",
-    significado: "Fuente abundante de néctar en periodos secos.",
+    nectar: 65,
+    polen: 35,
     floracion: [40, 60, 80, 90, 60, 20, 0, 0, 0, 20, 50, 70]
   },
   {
@@ -191,10 +192,10 @@ const meliferaData = [
     familia: "Fabaceae",
     genero: "Galega",
     especie: "officinalis",
-    nombreComun: "Galega",
     sinonimo: "Galega bicolor Desr",
     formaCrecimiento: "Planta herbácea perenne",
-    significado: "Planta medicinal con flores que atraen abejas.",
+    nectar: 45,
+    polen: 55,
     floracion: [0, 0, 0, 30, 60, 90, 100, 80, 50, 20, 0, 0]
   },
   {
@@ -203,10 +204,10 @@ const meliferaData = [
     familia: "Lamiaceae",
     genero: "Lavandula",
     especie: "angustifolia",
-    nombreComun: "Lavanda",
     sinonimo: "Lavandula officinalis Chaix",
     formaCrecimiento: "Arbusto perenne aromático",
-    significado: "Altamente valorada por su néctar y aroma, ideal para apicultura intensiva.",
+    nectar: 60,
+    polen: 40,
     floracion: [0, 0, 0, 0, 30, 80, 100, 90, 60, 20, 0, 0]
   }
 ];

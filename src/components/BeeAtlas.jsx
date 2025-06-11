@@ -23,6 +23,7 @@ import './MeliferaStyles.css';
 // Importar logos
 import logoinia from './images/logoinia.png';
 import logoGobChile from './images/logob.png';
+import abeja from '../components/images/Abeja.png';
 
 // Importar imágenes de especies melíferas
 import MeliferaPage1 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0001.jpg';
@@ -63,7 +64,7 @@ const plantNames = [
   'Apicultura Natural Regenerativa'
 ];
 
-// Componente MeliferaPage optimizado y limpio
+// Componente MeliferaPage optimizado con nuevas clases CSS
 const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantIndex = 0 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredMonth, setHoveredMonth] = useState(null);
@@ -88,101 +89,154 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
   };
 
   return (
-    <div className="h-full w-full flex" style={{ height: '100%' }}>
-      {/* Panel izquierdo - Imagen a pantalla completa */}
-      <div className="w-1/2 h-full relative">
+    <div className="melifera-container">
+      {/* Panel izquierdo - Imagen */}
+      <div className="melifera-image-panel">
         <img 
           src={imageSrc} 
-          alt={plantData.nombreComun} 
-          className="w-full h-full object-contain"
-          style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.5s ease-out' }}
+          alt={plantNames[plantIndex] || `Planta ${plantIndex + 1}`}
+          className="melifera-image fade-in"
+          style={{ opacity: isLoaded ? 1 : 0 }}
         />
       </div>
       
-      {/* Panel derecho - Información compacta */}
-      <div className="w-1/2 h-full flex flex-col p-4 bg-gradient-to-br from-green-50 to-green-100 overflow-y-auto">
+      {/* Panel derecho - Información */}
+      <div className="melifera-info-panel custom-scrollbar">
         <div className="space-y-3 flex-1">
           
-          {/* Clasificación taxonómica */}
-          <div className="bg-white rounded-lg shadow-md p-3 border border-green-100">
-            <h4 className="text-sm font-bold text-green-800 mb-2 flex items-center">
-              <span className="mr-2">🔬</span>
-              Clasificación Taxonómica
-            </h4>
+          {/* Taxonomía estilo vertical sin título exterior */}
+          <div className="taxonomy-vertical-container">
+            <div className="taxonomy-header">TAXONOMÍA</div>
             
-            <div className="grid grid-cols-2 gap-2">
-              {[
-                { label: 'Orden', value: plantData.orden, color: '#3b82f6' },
-                { label: 'Familia', value: plantData.familia, color: '#10b981' },
-                { label: 'Género', value: plantData.genero, color: '#8b5cf6' },
-                { label: 'Especie', value: plantData.especie, color: '#6366f1' }
-              ].map((item, index) => (
-                <div 
-                  key={index}
-                  className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-2 border-l-3"
-                  style={{ borderLeftColor: item.color, borderLeftWidth: '3px' }}
-                >
-                  <span className="text-xs font-bold text-gray-700 uppercase block mb-1">
-                    {item.label}
-                  </span>
-                  <span className="text-sm text-gray-900 font-medium">
-                    {item.value}
-                  </span>
+            <div className="taxonomy-chain">
+              <div className="taxonomy-item orden">
+                <div className="taxonomy-label">ORDEN</div>
+                <div className="taxonomy-value">{plantData.orden.toUpperCase()}</div>
+              </div>
+              
+              <div className="taxonomy-connector"></div>
+              
+              <div className="taxonomy-item familia">
+                <div className="taxonomy-label">FAMILIA</div>
+                <div className="taxonomy-value">{plantData.familia.toUpperCase()}</div>
+              </div>
+              
+              <div className="taxonomy-connector"></div>
+              
+              <div className="taxonomy-item genero">
+                <div className="taxonomy-label">GÉNERO</div>
+                <div className="taxonomy-value">{plantData.genero.toUpperCase()}</div>
+              </div>
+              
+              <div className="taxonomy-connector"></div>
+              
+              <div className="taxonomy-item especie">
+                <div className="taxonomy-label">ESPECIE</div>
+                <div className="taxonomy-value">{plantData.especie.toUpperCase()}</div>
+              </div>
+            </div>
+            
+            {/* Información adicional con valor apícola al lado */}
+            <div className="taxonomy-bottom-section">
+              <div className="taxonomy-additional-info">
+                <div className="taxonomy-info-item">
+                  <strong>Sinónimo:</strong> {plantData.sinonimo}
                 </div>
-              ))}
+                <div className="taxonomy-info-item">
+                  <strong>Forma de crecimiento:</strong> {plantData.formaCrecimiento}
+                </div>
+              </div>
+              
+              {/* Valor Apícola posicionado a la derecha */}
+              <div className="apicolage-side-container">
+                <div className="half-donut-chart">
+                  <svg width="120" height="80" viewBox="0 0 120 80">
+                    {/* Media dona de fondo */}
+                    <path
+                      d="M 20 60 A 40 40 0 0 1 100 60"
+                      fill="none"
+                      stroke="#f5f5f5"
+                      strokeWidth="20"
+                    />
+                    
+                    {/* Sección de néctar (amarillo) */}
+                    <path
+                      d="M 20 60 A 40 40 0 0 1 100 60"
+                      fill="none"
+                      stroke="url(#nectarGradient)"
+                      strokeWidth="20"
+                      strokeDasharray={`${(plantData.nectar / 100) * 125.6} 125.6`}
+                      strokeDashoffset="0"
+                      className="half-donut-section nectar-arc"
+                    />
+                    
+                    {/* Sección de polen (naranja) */}
+                    <path
+                      d="M 20 60 A 40 40 0 0 1 100 60"
+                      fill="none"
+                      stroke="url(#polenGradient)"
+                      strokeWidth="20"
+                      strokeDasharray={`${(plantData.polen / 100) * 125.6} 125.6`}
+                      strokeDashoffset={`-${(plantData.nectar / 100) * 125.6}`}
+                      className="half-donut-section polen-arc"
+                    />
+                    
+                    {/* Gradientes */}
+                    <defs>
+                      <linearGradient id="nectarGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#ffd23f" />
+                        <stop offset="100%" stopColor="#ffe066" />
+                      </linearGradient>
+                      <linearGradient id="polenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#ff6b35" />
+                        <stop offset="100%" stopColor="#ff8c42" />
+                      </linearGradient>
+                    </defs>
+                    
+                    {/* Textos curvados siguiendo el semicírculo */}
+                    <defs>
+                      <path id="nectarPath" d="M 25 50 A 35 35 0 0 1 60 25" />
+                      <path id="polenPath" d="M 60 25 A 35 35 0 0 1 95 50" />
+                    </defs>
+                    
+                    <text className="curved-text nectar-text">
+                      <textPath href="#nectarPath" startOffset="50%">
+                        Néctar
+                      </textPath>
+                    </text>
+                    
+                    <text className="curved-text polen-text">
+                      <textPath href="#polenPath" startOffset="50%">
+                        Polen
+                      </textPath>
+                    </text>
+                  </svg>
+                  
+                  <div className="apicolage-text-below">VALOR APÍCOLA</div>
+                </div>
+              </div>
             </div>
           </div>
           
-          {/* Características */}
-          <div className="bg-white rounded-lg shadow-md p-3 border border-green-100">
-            <h4 className="text-sm font-bold text-green-800 mb-2 flex items-center">
-              <span className="mr-2">📋</span>
-              Características Generales
-            </h4>
-            
-            <div className="space-y-2">
-              {[
-                { label: 'Nombre Común', value: plantData.nombreComun, icon: '📝' },
-                { label: 'Sinónimo Científico', value: plantData.sinonimo, icon: '🔄' },
-                { label: 'Forma de Crecimiento', value: plantData.formaCrecimiento, icon: '🌱' }
-              ].map((item, index) => (
-                <div 
-                  key={index}
-                  className="bg-gradient-to-r from-gray-50 to-white rounded-lg p-2 border-l-3 border-green-300"
-                >
-                  <div className="flex items-start">
-                    <div className="text-sm mr-2 mt-1">{item.icon}</div>
-                    <div className="flex-1">
-                      <span className="text-xs font-bold text-gray-700 uppercase block mb-1">
-                        {item.label}
-                      </span>
-                      <span className="text-xs text-gray-900 font-medium">
-                        {item.value}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+
           
           {/* Calendario de floración */}
-          <div className="bg-white rounded-lg shadow-md p-3 border border-green-100 flex-1">
-            <h4 className="text-sm font-bold text-green-800 mb-2 flex items-center">
-              <span className="mr-2">📅</span>
+          <div className="melifera-section">
+            <h4 className="melifera-section-title">
+              <span className="melifera-section-icon"></span>
               Calendario de Floración
             </h4>
             
-            <div className="space-y-2">
+            <div className="melifera-calendar">
               {/* Calendario visual */}
-              <div className="grid grid-cols-12 gap-1 mb-2">
+              <div className="melifera-calendar-grid">
                 {meses.map((mes, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-xs font-semibold text-gray-600 mb-1">
+                  <div key={index} className="melifera-month">
+                    <div className="melifera-month-label">
                       {mes}
                     </div>
                     <div 
-                      className="h-6 rounded cursor-pointer transition-all duration-200 hover:scale-110 relative border border-gray-200"
+                      className="melifera-month-bar smooth-transition"
                       style={{ 
                         backgroundColor: getFlowerColor(plantData.floracion[index])
                       }}
@@ -190,12 +244,11 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
                       onMouseLeave={() => setHoveredMonth(null)}
                     >
                       {hoveredMonth === index && (
-                        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-20">
-                          <div className="text-center">
-                            <div className="font-semibold">{mes}</div>
+                        <div className="melifera-tooltip">
+                          <div>
+                            <div style={{ fontWeight: '600' }}>{mes}</div>
                             <div>{plantData.floracion[index]}%</div>
                           </div>
-                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-2 border-transparent border-t-gray-800"></div>
                         </div>
                       )}
                     </div>
@@ -203,39 +256,7 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
                 ))}
               </div>
               
-              {/* Leyenda */}
-              <div className="bg-gray-50 rounded-lg p-2">
-                <div className="text-xs font-semibold text-gray-700 mb-1 text-center">Intensidad de Floración</div>
-                <div className="flex flex-wrap justify-center gap-1 text-xs">
-                  {[
-                    { color: '#f3f4f6', label: '0%' },
-                    { color: '#fef3c7', label: '1-20%' },
-                    { color: '#fde047', label: '21-40%' },
-                    { color: '#facc15', label: '41-60%' },
-                    { color: '#eab308', label: '61-80%' },
-                    { color: '#ca8a04', label: '81-100%' }
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center">
-                      <div 
-                        className="w-2 h-2 rounded mr-1 border border-gray-300" 
-                        style={{backgroundColor: item.color}}
-                      ></div>
-                      <span className="font-medium">{item.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Importancia melífera */}
-              <div className="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg p-2 border-l-3 border-yellow-400">
-                <div className="flex items-start">
-                  <span className="text-sm mr-2 mt-1">🍯</span>
-                  <div>
-                    <h5 className="font-bold text-yellow-800 mb-1 text-xs">Importancia Melífera</h5>
-                    <p className="text-yellow-900 text-xs leading-relaxed">{plantData.significado}</p>
-                  </div>
-                </div>
-              </div>
+              {/* Leyenda - ELIMINADA */}
             </div>
           </div>
         </div>
@@ -244,33 +265,57 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
   );
 };
 
-// Componente de Splash
+// Componente de Splash actualizado
 const BeeSplash = ({ onFinishLoading }) => {
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    const timer = setTimeout(onFinishLoading, 3000);
-    return () => clearTimeout(timer);
+    // Simular progreso de carga
+    const progressInterval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          setTimeout(onFinishLoading, 500); // Pequeña pausa antes de terminar
+          return 100;
+        }
+        return prev + 2; // Incrementar progreso cada 60ms
+      });
+    }, 60);
+
+    return () => clearInterval(progressInterval);
   }, [onFinishLoading]);
 
   return (
     <div className="fixed inset-0 bg-green-50 flex flex-col items-center justify-center z-50">
       <div className="relative mb-6">
-        <img src={logoinia} alt="Logo INIA" className="h-32 w-auto object-contain" />
+        <img src={logoinia} alt="Logo INIA" className="h-32 w-auto object-contain fade-in" />
       </div>
-      <div className="flex space-x-3 mt-3">
-        {[0, 1, 2, 3, 4].map((index) => (
+      
+      {/* Contenedor de la abeja animada */}
+      <div className="relative w-80 h-20 mb-6 overflow-hidden">
+        {/* Barra de progreso de fondo */}
+        <div className="absolute bottom-4 left-0 right-0 h-2 bg-gray-200 rounded-full">
           <div 
-            key={index} 
-            className="text-xl animate-bounce" 
-            style={{ 
-              animationDelay: `${index * 0.2}s`,
-              animationDuration: '1s'
-            }}
-          >
-            🐝
-          </div>
-        ))}
+            className="h-full bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full transition-all duration-300 ease-out"
+            style={{ width: `${Math.min(progress + 5, 100)}%` }}
+          />
+        </div>
+        
+        {/* Abeja flotante - volando arriba de la barra */}
+        <img 
+          src={abeja} 
+          alt="Abeja" 
+          className="absolute top-0 w-12 h-12 object-contain transition-all duration-300 ease-out bee-float"
+          style={{ 
+            left: `${Math.min(progress, 90)}%`,
+            transform: `translateX(-50%) ${progress < 100 ? 'rotate(-10deg)' : 'rotate(0deg)'}`
+          }}
+        />
       </div>
-      <p className="mt-3 text-gray-600">Cargando Atlas INIA Quilamapu...</p>
+      
+      <p className="mt-3 text-gray-600 font-medium">
+        Cargando Atlas INIA Quilamapu... {progress}%
+      </p>
     </div>
   );
 };
@@ -407,6 +452,37 @@ const AtlasPage = () => {
     }
   }, [currentPage, isMeliferaPage]);
 
+  // NUEVO: Efecto para navegación con teclado
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Solo procesar si no hay inputs enfocados
+      const activeElement = document.activeElement;
+      const isInputFocused = activeElement && (
+        activeElement.tagName === 'INPUT' || 
+        activeElement.tagName === 'TEXTAREA' || 
+        activeElement.contentEditable === 'true'
+      );
+      
+      if (isInputFocused) return;
+      
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault(); // Prevenir scroll horizontal
+        goToPreviousPage();
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault(); // Prevenir scroll horizontal
+        goToNextPage();
+      }
+    };
+
+    // Agregar el event listener al document
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [currentPage]); // Dependencia en currentPage para tener el estado actual
+
   useLayoutEffect(() => {
     const updateSize = () => {
       const vh = window.innerHeight;
@@ -481,92 +557,101 @@ const AtlasPage = () => {
     <>
       {isLoading && <BeeSplash onFinishLoading={() => setIsLoading(false)} />}
       
-      <div 
-        className="flex flex-col w-full bg-white overflow-hidden" 
-        style={{ height: 'var(--vh, 100vh)', maxHeight: 'var(--vh, 100vh)' }}
-      >
+      <div className="atlas-container">
         {/* Header */}
-        <div className="bg-white text-black shadow-md flex-shrink-0 flex flex-col atlas-header">
+        <div className="atlas-header">
           {/* Header Principal */}
-          <div className="bg-green-600 text-white py-3 px-4">
-            <div className="flex items-center justify-between max-w-7xl mx-auto">
-              <div className="flex items-center space-x-4">
-                <img src={logoinia} alt="INIA" className="h-10 object-contain" />
-                <img src={logoGobChile} alt="Gobierno de Chile" className="h-12 object-contain" />
-                <div className="ml-4">
-                  <h1 className="text-xl font-bold tracking-wide">ATLAS APÍCOLA DE ÑUBLE</h1>
+          <div className="atlas-header-main">
+            <div className="atlas-header-content">
+              <div className="atlas-logo-section">
+                <img src={logoinia} alt="INIA" className="atlas-logo" />
+                <img 
+                  src={logoGobChile} 
+                  alt="Gobierno de Chile" 
+                  className="atlas-logo" 
+                  style={{height: '2.5rem'}} 
+                />
+                <div className="atlas-title">
+                  ATLAS APÍCOLA DE ÑUBLE
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="atlas-header-controls">
                 <button
                   onClick={() => navigate('/')}
-                  className="text-white p-2 rounded-md hover:bg-green-700 transition-colors"
+                  className="atlas-control-btn"
+                  aria-label="Ir al inicio"
                 >
                   <Home size={20} />
                 </button>
                 <button 
-                  className="text-white p-2 rounded-md hover:bg-green-700 transition-colors"
+                  className="atlas-control-btn"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
+                  aria-label="Abrir menú"
                 >
-                  <ChevronRight size={20} className={`transition-transform ${sidebarOpen ? 'rotate-180' : ''}`} />
+                  <ChevronRight 
+                    size={20} 
+                    className={`smooth-transition ${sidebarOpen ? 'rotate-180' : ''}`} 
+                  />
                 </button>
               </div>
             </div>
           </div>
 
           {/* Navegación */}
-          <div className="bg-black text-white relative">
-            <div className="nav-container relative overflow-x-auto">
-              <div className="flex justify-center min-w-max">
+          <div className="atlas-nav">
+            <div className="nav-container">
+              <div className="atlas-nav-list">
                 {navItems.map((item, index) => (
                   <button
                     key={item.id}
                     data-nav-index={index}
                     onClick={() => setCurrentPage(item.page)}
-                    className={`px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors relative z-10 ${
+                    className={`atlas-nav-btn ${
                       currentPage === item.page || (isMeliferaPage && item.page === 'melifera-botany')
-                        ? 'text-white' : 'text-gray-300 hover:text-white'
+                        ? 'active' : ''
                     }`}
                   >
                     {item.title}
                   </button>
                 ))}
               </div>
-              <div className="absolute bottom-0 h-1 bg-green-500 z-0" style={indicatorStyle} />
+              <div className="nav-indicator" style={indicatorStyle} />
             </div>
           </div>
         </div>
         
         {/* Contenido */}
-        <div className="flex-grow relative overflow-hidden" style={{ height: `${contentHeight}px` }}>
+        <div className="atlas-content" style={{ height: `${contentHeight}px` }}>
           {/* Overlay móvil */}
           {sidebarOpen && (
             <div 
-              className="absolute inset-0 bg-black bg-opacity-50 z-30 md:hidden" 
+              className="mobile-overlay md:hidden" 
               onClick={() => setSidebarOpen(false)}
             />
           )}
           
           {/* Sidebar */}
           {sidebarOpen && (
-            <div className="absolute inset-y-0 left-0 w-3/4 sm:w-64 md:w-72 bg-green-50 shadow-lg z-40">
-              <div className="p-4 h-full overflow-y-auto">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-bold text-green-800">Contenido</h2>
-                  <button onClick={() => setSidebarOpen(false)} className="p-1 rounded text-gray-500 hover:bg-green-100">
+            <div className="atlas-sidebar">
+              <div className="atlas-sidebar-content custom-scrollbar">
+                <div className="atlas-sidebar-header">
+                  <h2 className="atlas-sidebar-title">Contenido</h2>
+                  <button 
+                    onClick={() => setSidebarOpen(false)} 
+                    className="atlas-control-btn"
+                    aria-label="Cerrar menú"
+                  >
                     <ChevronRight size={20} className="rotate-180" />
                   </button>
                 </div>
                 
-                <ul className="space-y-2">
+                <ul className="atlas-sidebar-nav">
                   <li>
                     <button
                       onClick={() => { setCurrentPage('table-of-contents'); setSidebarOpen(false); }}
-                      className={`w-full text-left px-3 py-2 rounded transition-colors ${
-                        currentPage === 'table-of-contents' 
-                          ? 'bg-green-200 text-green-800 font-medium' 
-                          : 'text-gray-700 hover:bg-green-100'
+                      className={`atlas-sidebar-btn ${
+                        currentPage === 'table-of-contents' ? 'active' : ''
                       }`}
                     >
                       Tabla de Contenidos
@@ -577,25 +662,22 @@ const AtlasPage = () => {
                     <li key={item.id}>
                       <button
                         onClick={() => { setCurrentPage(item.page); setSidebarOpen(false); }}
-                        className={`w-full text-left px-3 py-2 rounded transition-colors ${
+                        className={`atlas-sidebar-btn ${
                           currentPage === item.page || (isMeliferaPage && item.page === 'melifera-botany')
-                            ? 'bg-green-200 text-green-800 font-medium' 
-                            : 'text-gray-700 hover:bg-green-100'
+                            ? 'active' : ''
                         }`}
                       >
                         {item.title}
                       </button>
                       
                       {item.page === 'melifera-botany' && (
-                        <div className="pl-6 mt-1 space-y-1">
+                        <div className="atlas-sidebar-subnav">
                           {Array.from({ length: 17 }, (_, i) => i + 1).map(num => (
                             <button
                               key={`melifera-page-${num}`}
                               onClick={() => { setCurrentPage(`melifera-page-${num}`); setSidebarOpen(false); }}
-                              className={`w-full text-left px-3 py-1 rounded text-sm transition-colors ${
-                                currentPage === `melifera-page-${num}`
-                                  ? 'bg-green-100 text-green-800 font-medium' 
-                                  : 'text-gray-600 hover:bg-green-50'
+                              className={`atlas-sidebar-btn ${
+                                currentPage === `melifera-page-${num}` ? 'active' : ''
                               }`}
                             >
                               {plantNames[num - 1] || `Página ${num}`}
@@ -611,23 +693,23 @@ const AtlasPage = () => {
           )}
           
           {/* Contenido principal */}
-          <div className="h-full w-full overflow-hidden relative">
-            <div className="h-full w-full">
-              {renderPageComponent()}
-            </div>
+          <div className="atlas-main-content">
+            {renderPageComponent()}
           </div>
           
           {/* Navegación flotante */}
-          <div className="absolute top-1/2 left-0 right-0 flex justify-between px-3 transform -translate-y-1/2 z-30 pointer-events-none">
+          <div className="atlas-nav-controls">
             <button 
               onClick={goToPreviousPage}
-              className="bg-green-600 text-white p-2 rounded-full shadow-md hover:bg-green-700 transition-colors pointer-events-auto"
+              className="atlas-nav-arrow"
+              aria-label="Página anterior"
             >
               <ArrowLeft size={18} />
             </button>
             <button 
               onClick={goToNextPage}
-              className="bg-green-600 text-white p-2 rounded-full shadow-md hover:bg-green-700 transition-colors pointer-events-auto"
+              className="atlas-nav-arrow"
+              aria-label="Página siguiente"
             >
               <ArrowRight size={18} />
             </button>
@@ -635,8 +717,8 @@ const AtlasPage = () => {
           
           {/* Indicador de página melífera */}
           {isMeliferaPage && currentPage.startsWith('melifera-page-') && (
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center z-30">
-              <div className="bg-green-800 bg-opacity-90 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+            <div className="atlas-page-indicator">
+              <div className="atlas-indicator-badge">
                 {getCurrentPlantName()}
               </div>
             </div>
