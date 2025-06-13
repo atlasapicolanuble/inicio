@@ -26,9 +26,9 @@ import logoGobChile from './images/logob.png';
 import abeja from '../components/images/Abeja.png';
 
 // Importar imágenes de especies melíferas
-import MeliferaPage1 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0001.jpg';
-import MeliferaPage2 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0002.jpg';
-import MeliferaPage3 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0003.jpg';
+import MeliferaPage1 from './images/aaa.PNG';
+import MeliferaPage2 from './images/aaaa.png';
+import MeliferaPage3 from './images/aa.jpeg';
 import MeliferaPage4 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0004.jpg';
 import MeliferaPage5 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0005.jpg';
 import MeliferaPage6 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0006.jpg';
