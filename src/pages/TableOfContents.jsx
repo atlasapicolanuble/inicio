@@ -80,7 +80,7 @@ const TableOfContentsPage = ({ onChangePage }) => {
     {
       id: 7,
       number: "07",
-      title: "ARN",
+      title: "ANR",
       items: ["Diversidad genética", "Impacto en las colmenas", "Análisis genético de poblaciones"]
     },
     {
@@ -577,7 +577,7 @@ const TableOfContentsPage = ({ onChangePage }) => {
           }
         }
         
-        /* Media Queries para Notebook - TÍTULOS MÁS GRANDES */
+        /* Media Queries para Notebook - ABEJA Y LOGO AGRANDADOS */
         @media (min-width: 1024px) and (max-width: 1919px) {
           .video-container.notebook {
             width: 33.333333%;
@@ -606,18 +606,18 @@ const TableOfContentsPage = ({ onChangePage }) => {
           }
           
           .bee-image.notebook {
-            width: 8rem; /* Aumentado de 6.5rem a 8rem */
-            height: 8rem; /* Aumentado de 6.5rem a 8rem */
+            width: 10rem; /* AGRANDADO de 8rem a 10rem */
+            height: 10rem; /* AGRANDADO de 8rem a 10rem */
           }
           
           .apis-logo.notebook {
-            width: 8rem; /* Mismo tamaño que la abeja notebook aumentado */
-            height: 8rem; /* Mismo tamaño que la abeja notebook aumentado */
+            width: 10rem; /* AGRANDADO - mismo tamaño que la abeja notebook */
+            height: 10rem; /* AGRANDADO - mismo tamaño que la abeja notebook */
           }
           
           .apis-text-container.notebook {
-            bottom: -2rem !important; /* SUBIDO de -4rem a -2rem */
-            right: 14rem; /* Ajustado para notebook */
+            bottom: -2.5rem !important; /* AJUSTADO para el nuevo tamaño */
+            right: 16rem; /* AJUSTADO para el nuevo tamaño */
           }
           
           .apis-text-container.notebook {
@@ -664,7 +664,7 @@ const TableOfContentsPage = ({ onChangePage }) => {
           }
         }
         
-        /* Media Queries para Monitor Grande */
+        /* Media Queries para Monitor Grande - ABEJA Y LOGO AGRANDADOS */
         @media (min-width: 1920px) {
           .video-container.monitor {
             width: 33.333333%;
@@ -693,18 +693,18 @@ const TableOfContentsPage = ({ onChangePage }) => {
           }
           
           .bee-image.monitor {
-            width: 14rem; /* Aumentado de 12rem a 14rem */
-            height: 14rem; /* Aumentado de 12rem a 14rem */
+            width: 18rem; /* AGRANDADO de 14rem a 18rem */
+            height: 18rem; /* AGRANDADO de 14rem a 18rem */
           }
           
           .apis-logo.monitor {
-            width: 14rem; /* Mismo tamaño que la abeja monitor aumentado */
-            height: 14rem; /* Mismo tamaño que la abeja monitor aumentado */
+            width: 18rem; /* AGRANDADO - mismo tamaño que la abeja monitor */
+            height: 18rem; /* AGRANDADO - mismo tamaño que la abeja monitor */
           }
           
           .apis-text-container.monitor {
-            bottom: -3.5rem !important; /* SUBIDO de -7rem a -3.5rem */
-            right: 24rem; /* Ajustado para monitor */
+            bottom: -4.5rem !important; /* AJUSTADO para el nuevo tamaño */
+            right: 28rem; /* AJUSTADO para el nuevo tamaño */
           }
           
           .apis-text-container.monitor {

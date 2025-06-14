@@ -118,7 +118,7 @@ export default function HistoriaAbeja() {
                 display: 'inline-block' 
               }}
             >
-              SECCIÓN I
+              SECCIÓN 1
             </span>
           </div>
         </div>

@@ -26,9 +26,9 @@ import logoGobChile from './images/logob.png';
 import abeja from '../components/images/Abeja.png';
 
 // Importar imágenes de especies melíferas
-import MeliferaPage1 from './images/aaa.PNG';
-import MeliferaPage2 from './images/aaaa.png';
-import MeliferaPage3 from './images/aa.jpeg';
+import MeliferaPage1 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0001.jpg';
+import MeliferaPage2 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0002.jpg';
+import MeliferaPage3 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0003.jpg';
 import MeliferaPage4 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0004.jpg';
 import MeliferaPage5 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0005.jpg';
 import MeliferaPage6 from '../pages/Meliferas/Especies meliferas .pdf_compressed_page-0006.jpg';
@@ -64,7 +64,7 @@ const plantNames = [
   'Apicultura Natural Regenerativa'
 ];
 
-// Componente MeliferaPage optimizado con nuevas clases CSS
+// Componente MeliferaPage optimizado con calendario mejorado
 const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantIndex = 0 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredMonth, setHoveredMonth] = useState(null);
@@ -78,7 +78,7 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
     setIsLoaded(true);
   }, []);
 
-  // Función para obtener el color según el porcentaje de floración
+  // Función para obtener el color según el porcentaje de floración (como estaba antes)
   const getFlowerColor = (percentage) => {
     if (percentage === 0) return '#f3f4f6';
     if (percentage <= 20) return '#fef3c7';
@@ -217,10 +217,8 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
               </div>
             </div>
           </div>
-          
 
-          
-          {/* Calendario de floración */}
+          {/* Calendario de floración simplificado */}
           <div className="melifera-section">
             <h4 className="melifera-section-title">
               <span className="melifera-section-icon"></span>
@@ -228,7 +226,7 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
             </h4>
             
             <div className="melifera-calendar">
-              {/* Calendario visual */}
+              {/* Calendario visual original */}
               <div className="melifera-calendar-grid">
                 {meses.map((mes, index) => (
                   <div key={index} className="melifera-month">
@@ -245,9 +243,13 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
                     >
                       {hoveredMonth === index && (
                         <div className="melifera-tooltip">
-                          <div>
-                            <div style={{ fontWeight: '600' }}>{mes}</div>
-                            <div>{plantData.floracion[index]}%</div>
+                          <div style={{ 
+                            fontWeight: 'bold', 
+                            fontSize: '1.1rem',
+                            textAlign: 'center',
+                            lineHeight: '1'
+                          }}>
+                            {plantData.floracion[index]}%
                           </div>
                         </div>
                       )}
@@ -255,8 +257,6 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
                   </div>
                 ))}
               </div>
-              
-              {/* Leyenda - ELIMINADA */}
             </div>
           </div>
         </div>
@@ -265,7 +265,7 @@ const MeliferaPage = ({ imageSrc = "https://via.placeholder.com/400x300", plantI
   );
 };
 
-// Componente de Splash actualizado
+// Componente de Splash mejorado con más espacio para la abeja
 const BeeSplash = ({ onFinishLoading }) => {
   const [progress, setProgress] = useState(0);
 
@@ -286,36 +286,310 @@ const BeeSplash = ({ onFinishLoading }) => {
   }, [onFinishLoading]);
 
   return (
-    <div className="fixed inset-0 bg-green-50 flex flex-col items-center justify-center z-50">
-      <div className="relative mb-6">
-        <img src={logoinia} alt="Logo INIA" className="h-32 w-auto object-contain fade-in" />
-      </div>
-      
-      {/* Contenedor de la abeja animada */}
-      <div className="relative w-80 h-20 mb-6 overflow-hidden">
-        {/* Barra de progreso de fondo */}
-        <div className="absolute bottom-4 left-0 right-0 h-2 bg-gray-200 rounded-full">
-          <div 
-            className="h-full bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full transition-all duration-300 ease-out"
-            style={{ width: `${Math.min(progress + 5, 100)}%` }}
+    <div className="splash-screen">
+      <div className="splash-content">
+        <div className="splash-logo-container">
+          <img src={logoinia} alt="Logo INIA" className="splash-logo fade-in" />
+        </div>
+        
+        {/* Contenedor mejorado de la abeja animada */}
+        <div className="bee-animation-container">
+          {/* Barra de progreso de fondo */}
+          <div className="progress-bar-background">
+            <div 
+              className="progress-bar-fill"
+              style={{ width: `${Math.min(progress + 5, 100)}%` }}
+            />
+          </div>
+          
+          {/* Abeja flotante con más espacio */}
+          <img 
+            src={abeja} 
+            alt="Abeja" 
+            className="flying-bee"
+            style={{ 
+              left: `${Math.min(progress * 0.85, 85)}%`, // Reducir el movimiento máximo
+              transform: `translateX(-50%) ${progress < 100 ? 'rotate(-10deg)' : 'rotate(0deg)'}`
+            }}
           />
         </div>
         
-        {/* Abeja flotante - volando arriba de la barra */}
-        <img 
-          src={abeja} 
-          alt="Abeja" 
-          className="absolute top-0 w-12 h-12 object-contain transition-all duration-300 ease-out bee-float"
-          style={{ 
-            left: `${Math.min(progress, 90)}%`,
-            transform: `translateX(-50%) ${progress < 100 ? 'rotate(-10deg)' : 'rotate(0deg)'}`
-          }}
-        />
+        <p className="splash-text">
+          Cargando Atlas INIA Quilamapu... {progress}%
+        </p>
       </div>
-      
-      <p className="mt-3 text-gray-600 font-medium">
-        Cargando Atlas INIA Quilamapu... {progress}%
-      </p>
+
+      <style jsx>{`
+        .splash-screen {
+          position: fixed;
+          inset: 0;
+          background-color:rgb(255, 255, 255);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 50;
+          padding: 2rem;
+        }
+
+        .splash-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          max-width: 600px;
+        }
+
+        .splash-logo-container {
+          position: relative;
+          margin-bottom: 3rem;
+        }
+
+        .splash-logo {
+          height: 6rem;
+          width: auto;
+          object-fit: contain;
+          animation: fadeIn 1s ease-in-out;
+        }
+
+        .bee-animation-container {
+          position: relative;
+          width: 100%;
+          max-width: 500px;
+          height: 120px;
+          margin-bottom: 2rem;
+          overflow: visible; /* Permitir que la abeja se vea completamente */
+          padding: 0 3rem; /* Agregar padding lateral para dar espacio */
+        }
+
+        .progress-bar-background {
+          position: absolute;
+          bottom: 30px;
+          left: 3rem;
+          right: 3rem;
+          height: 8px;
+          background-color: rgb(229 231 235);
+          border-radius: 9999px;
+        }
+
+        .progress-bar-fill {
+          height: 100%;
+          background: linear-gradient(to right, rgb(251 191 36), rgb(245 158 11));
+          border-radius: 9999px;
+          transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .flying-bee {
+          position: absolute;
+          top: 10px;
+          width: 4rem;
+          height: 4rem;
+          object-fit: contain;
+          transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+          filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+          animation: beeFloat 2s ease-in-out infinite;
+        }
+
+        .splash-text {
+          margin-top: 1rem;
+          color: rgb(75 85 99);
+          font-weight: 500;
+          text-align: center;
+          font-size: 1.1rem;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes beeFloat {
+          0%, 100% {
+            transform: translateX(-50%) translateY(0px) rotate(-10deg);
+          }
+          50% {
+            transform: translateX(-50%) translateY(-8px) rotate(-5deg);
+          }
+        }
+
+        /* Media Queries Mejorados */
+        
+        /* Móviles pequeños */
+        @media (max-width: 480px) {
+          .splash-screen {
+            padding: 1rem;
+          }
+          
+          .splash-logo {
+            height: 4rem;
+          }
+          
+          .bee-animation-container {
+            max-width: 300px;
+            height: 100px;
+            padding: 0 2rem;
+          }
+          
+          .progress-bar-background {
+            left: 2rem;
+            right: 2rem;
+            height: 6px;
+          }
+          
+          .flying-bee {
+            width: 3rem;
+            height: 3rem;
+          }
+          
+          .splash-text {
+            font-size: 1rem;
+          }
+        }
+
+        /* Tablets */
+        @media (min-width: 768px) {
+          .splash-logo {
+            height: 7rem;
+          }
+          
+          .bee-animation-container {
+            max-width: 600px;
+            height: 140px;
+            padding: 0 4rem;
+          }
+          
+          .progress-bar-background {
+            left: 4rem;
+            right: 4rem;
+            height: 10px;
+          }
+          
+          .flying-bee {
+            width: 4.5rem;
+            height: 4.5rem;
+          }
+          
+          .splash-text {
+            font-size: 1.2rem;
+          }
+        }
+
+        /* Laptops */
+        @media (min-width: 1024px) {
+          .splash-logo {
+            height: 8rem;
+          }
+          
+          .bee-animation-container {
+            max-width: 700px;
+            height: 160px;
+            padding: 0 5rem;
+          }
+          
+          .progress-bar-background {
+            left: 5rem;
+            right: 5rem;
+            height: 12px;
+          }
+          
+          .flying-bee {
+            width: 5rem;
+            height: 5rem;
+          }
+          
+          .splash-text {
+            font-size: 1.3rem;
+          }
+        }
+
+        /* Monitores grandes (1440px y más) */
+        @media (min-width: 1440px) {
+          .splash-screen {
+            padding: 3rem;
+          }
+          
+          .splash-content {
+            max-width: 800px;
+          }
+          
+          .splash-logo-container {
+            margin-bottom: 4rem;
+          }
+          
+          .splash-logo {
+            height: 10rem;
+          }
+          
+          .bee-animation-container {
+            max-width: 800px;
+            height: 180px;
+            padding: 0 6rem;
+            margin-bottom: 3rem;
+          }
+          
+          .progress-bar-background {
+            left: 6rem;
+            right: 6rem;
+            height: 14px;
+            bottom: 40px;
+          }
+          
+          .flying-bee {
+            width: 6rem;
+            height: 6rem;
+            top: 5px;
+          }
+          
+          .splash-text {
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+          }
+        }
+
+        /* Monitores ultra anchos (1920px y más) */
+        @media (min-width: 1920px) {
+          .splash-screen {
+            padding: 4rem;
+          }
+          
+          .splash-content {
+            max-width: 1000px;
+          }
+          
+          .splash-logo {
+            height: 12rem;
+          }
+          
+          .bee-animation-container {
+            max-width: 900px;
+            height: 200px;
+            padding: 0 7rem;
+          }
+          
+          .progress-bar-background {
+            left: 7rem;
+            right: 7rem;
+            height: 16px;
+            bottom: 50px;
+          }
+          
+          .flying-bee {
+            width: 7rem;
+            height: 7rem;
+          }
+          
+          .splash-text {
+            font-size: 1.5rem;
+          }
+        }
+      `}</style>
     </div>
   );
 };
@@ -363,7 +637,7 @@ const AtlasPage = () => {
     { id: 4, title: "BOTÁNICA", page: "melifera-botany" },
     { id: 5, title: "TEMPERATURA", page: "bee-temperature" },
     { id: 6, title: "APICULTURA", page: "apiculture" },
-    { id: 7, title: "ARN", page: "bee-genetics" },
+    { id: 7, title: "ANR", page: "bee-genetics" },
     { id: 8, title: "APIARIOS", page: "apiaries" },
     { id: 9, title: "MIEL", page: "honey" },
     { id: 10, title: "COLABORADORES", page: "colaboradores" }
@@ -559,7 +833,7 @@ const AtlasPage = () => {
       
       <div className="atlas-container">
         {/* Header */}
-        <div className="atlas-header">
+        <div className="atlas-header" style={{ backgroundColor: '#16a34a' }}>
           {/* Header Principal */}
           <div className="atlas-header-main">
             <div className="atlas-header-content">

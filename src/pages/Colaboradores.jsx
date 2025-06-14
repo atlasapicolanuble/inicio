@@ -2,65 +2,168 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ZoomIn, ZoomOut, RotateCcw, ArrowLeft } from 'lucide-react';
 
-// Datos de ejemplo para los colaboradores - reemplaza con tus datos reales
-const colaboradoresData = [
-  {
-    id: 1,
-    nombre: "Dr. Carlos Méndez",
-    rol: "Investigador Principal",
-    area: "Genética de Abejas",
-    imagen: "https://randomuser.me/api/portraits/men/1.jpg",
-    posicion: { x: 0, y: 0 }
+// Datos organizados por filas
+const colaboradoresData = {
+  direccion: {
+    titulo: "Dirección",
+    miembros: [
+      {
+        id: 1,
+        nombre: "Dr. Mauricio Pereira",
+        iniciales: "MP",
+        titulo: "Doctor en Entomología",
+        participacion: "Subdirector de Investigación",
+        imagen: "https://randomuser.me/api/portraits/men/32.jpg",
+        posicion: { x: -200, y: -80 }
+      },
+      {
+        id: 2,
+        nombre: "Dr. Marcelino Claret",
+        iniciales: "MC",
+        titulo: "Doctor en Apicultura",
+        participacion: "Director General del Proyecto",
+        imagen: "https://randomuser.me/api/portraits/men/45.jpg",
+        posicion: { x: 0, y: -80 }
+      },
+      {
+        id: 3,
+        nombre: "Dra. Andrea Hernández",
+        iniciales: "AH",
+        titulo: "Doctora en Biología",
+        participacion: "Directora de Investigación Científica",
+        imagen: "https://randomuser.me/api/portraits/women/28.jpg",
+        posicion: { x: 200, y: -80 }
+      },
+      {
+        id: 4,
+        nombre: "Dr. Sebastián Contreras",
+        iniciales: "SC",
+        titulo: "Doctor en Ecología",
+        participacion: "Coordinador de Proyectos Ambientales",
+        imagen: "https://randomuser.me/api/portraits/men/67.jpg",
+        posicion: { x: 400, y: -80 }
+      }
+    ]
   },
-  {
-    id: 2,
-    nombre: "Dra. Ana Torres",
-    rol: "Investigadora",
-    area: "Botánica Melífera",
-    imagen: "https://randomuser.me/api/portraits/women/2.jpg",
-    posicion: { x: -250, y: -200 }
+  colaboradores_inia: {
+    titulo: "Colaboradores INIA",
+    miembros: [
+      {
+        id: 5,
+        nombre: "Dra. María Morales",
+        iniciales: "M",
+        titulo: "Doctora en Genética Apícola",
+        participacion: "Especialista en Mejoramiento Genético",
+        imagen: "https://randomuser.me/api/portraits/women/15.jpg",
+        posicion: { x: -300, y: 70 }
+      },
+      {
+        id: 6,
+        nombre: "Dr. Sergio Silva",
+        iniciales: "S",
+        titulo: "Doctor en Patología Veterinaria",
+        participacion: "Investigador en Enfermedades Apícolas",
+        imagen: "https://randomuser.me/api/portraits/men/22.jpg",
+        posicion: { x: -150, y: 70 }
+      },
+      {
+        id: 7,
+        nombre: "Dr. Ricardo Ramírez",
+        iniciales: "R",
+        titulo: "Doctor en Botánica",
+        participacion: "Especialista en Flora Melífera",
+        imagen: "https://randomuser.me/api/portraits/men/55.jpg",
+        posicion: { x: 0, y: 70 }
+      },
+      {
+        id: 8,
+        nombre: "Dr. Roberto Gómez Bolaños",
+        iniciales: "RGB",
+        titulo: "Doctor en Entomología Aplicada",
+        participacion: "Investigador Principal en Comportamiento",
+        imagen: "https://randomuser.me/api/portraits/men/41.jpg",
+        posicion: { x: 150, y: 70 }
+      },
+      {
+        id: 9,
+        nombre: "Dr. Humberto Abejorro",
+        iniciales: "HA",
+        titulo: "Doctor en Apicultura Sustentable",
+        participacion: "Especialista en Manejo Integrado",
+        imagen: "https://randomuser.me/api/portraits/men/38.jpg",
+        posicion: { x: 300, y: 70 }
+      }
+    ]
   },
-  {
-    id: 3,
-    nombre: "Dr. Miguel Rojas",
-    rol: "Investigador Asociado",
-    area: "Patología Apícola",
-    imagen: "https://randomuser.me/api/portraits/men/3.jpg",
-    posicion: { x: 250, y: -180 }
-  },
-  {
-    id: 4,
-    nombre: "Dra. Laura Sepúlveda",
-    rol: "Investigadora",
-    area: "Productos Apícolas",
-    imagen: "https://randomuser.me/api/portraits/women/4.jpg",
-    posicion: { x: -350, y: 50 }
-  },
-  {
-    id: 5,
-    nombre: "Dr. Roberto Gómez",
-    rol: "Investigador",
-    area: "Polinización",
-    imagen: "https://randomuser.me/api/portraits/men/5.jpg",
-    posicion: { x: 320, y: 80 }
-  },
-  {
-    id: 6,
-    nombre: "Dra. Patricia Vidal",
-    rol: "Investigadora Asistente",
-    area: "Comportamiento",
-    imagen: "https://randomuser.me/api/portraits/women/6.jpg",
-    posicion: { x: -150, y: 250 }
-  },
-  {
-    id: 7,
-    nombre: "Dr. Daniel Escobar",
-    rol: "Investigador Asociado",
-    area: "Apicultura Sustentable",
-    imagen: "https://randomuser.me/api/portraits/men/7.jpg",
-    posicion: { x: 180, y: 230 }
+  practicantes: {
+    titulo: "Practicantes",
+    miembros: [
+      {
+        id: 10,
+        nombre: "Walter Contreras",
+        iniciales: "WC",
+        titulo: "Estudiante Santo Tomás",
+        participacion: "Apoyo en Muestreo de Campo",
+        imagen: "https://randomuser.me/api/portraits/men/23.jpg",
+        posicion: { x: -400, y: 220 }
+      },
+      {
+        id: 11,
+        nombre: "Sofía Núñez",
+        iniciales: "SN",
+        titulo: "Estudiante INACAP",
+        participacion: "Asistente de Laboratorio",
+        imagen: "https://randomuser.me/api/portraits/women/34.jpg",
+        posicion: { x: -280, y: 220 }
+      },
+      {
+        id: 12,
+        nombre: "Pablo Pérez",
+        iniciales: "P",
+        titulo: "Estudiante Santo Tomás",
+        participacion: "Análisis de Muestras Polínicas",
+        imagen: "https://randomuser.me/api/portraits/men/19.jpg",
+        posicion: { x: -160, y: 220 }
+      },
+      {
+        id: 13,
+        nombre: "Patricia Pinto",
+        iniciales: "P",
+        titulo: "Estudiante INACAP",
+        participacion: "Documentación Fotográfica",
+        imagen: "https://randomuser.me/api/portraits/women/27.jpg",
+        posicion: { x: -40, y: 220 }
+      },
+      {
+        id: 14,
+        nombre: "Sebastián Soto",
+        iniciales: "S",
+        titulo: "Estudiante Santo Tomás",
+        participacion: "Procesamiento de Datos",
+        imagen: "https://randomuser.me/api/portraits/men/31.jpg",
+        posicion: { x: 80, y: 220 }
+      },
+      {
+        id: 15,
+        nombre: "Sandra Salinas",
+        iniciales: "S",
+        titulo: "Estudiante INACAP",
+        participacion: "Apoyo en Análisis Estadístico",
+        imagen: "https://randomuser.me/api/portraits/women/42.jpg",
+        posicion: { x: 200, y: 220 }
+      },
+      {
+        id: 16,
+        nombre: "Oscar Olivares",
+        iniciales: "O",
+        titulo: "Estudiante Santo Tomás",
+        participacion: "Mantenimiento de Colmenas",
+        imagen: "https://randomuser.me/api/portraits/men/26.jpg",
+        posicion: { x: 320, y: 220 }
+      }
+    ]
   }
-];
+};
 
 const Colaboradores = () => {
   const containerRef = useRef(null);
@@ -81,10 +184,8 @@ const Colaboradores = () => {
       }
     };
     
-    // Actualizar tamaño inicial
     updateContainerSize();
     
-    // Configurar observer para cambios de tamaño
     const resizeObserver = new ResizeObserver(updateContainerSize);
     if (containerRef.current) {
       resizeObserver.observe(containerRef.current);
@@ -105,17 +206,14 @@ const Colaboradores = () => {
     setIsTransitioning(true);
     setSelectedColaborador(colaborador);
     
-    // Animación simplificada de zoom
-    const zoomDuration = 600; // 0.6 segundos
-    const targetScale = 1.5; // Zoom más ligero
+    const zoomDuration = 600;
+    const targetScale = 1.8;
     
-    // Negamos la posición para centrar en el colaborador
     const targetPosition = { 
-      x: -colaborador.posicion.x * 0.5, 
-      y: -colaborador.posicion.y * 0.5 
+      x: -colaborador.posicion.x * 0.8, 
+      y: -colaborador.posicion.y * 0.8 
     };
     
-    // Animación simple con setTimeout
     setScale(targetScale);
     setPosition(targetPosition);
     
@@ -124,15 +222,14 @@ const Colaboradores = () => {
     }, zoomDuration);
   };
 
-  // Manejador para volver atrás (deseleccionar colaborador)
+  // Manejador para volver atrás
   const handleBack = () => {
     if (isTransitioning) return;
     
     setIsTransitioning(true);
     setSelectedColaborador(null);
     
-    // Animación simplificada para volver
-    const zoomDuration = 600; // 0.6 segundos
+    const zoomDuration = 600;
     
     setScale(1);
     setPosition({ x: 0, y: 0 });
@@ -142,28 +239,26 @@ const Colaboradores = () => {
     }, zoomDuration);
   };
 
-  // Manejador para zoom in manual
+  // Controles de zoom
   const handleZoomIn = () => {
     if (scale < 3) setScale(scale + 0.2);
   };
 
-  // Manejador para zoom out manual
   const handleZoomOut = () => {
     if (scale > 0.5) setScale(scale - 0.2);
   };
 
-  // Manejador para restablecer vista
   const handleReset = () => {
     setScale(1);
     setPosition({ x: 0, y: 0 });
     setSelectedColaborador(null);
   };
 
-  // Estado de arrastre para navegación
+  // Estado de arrastre
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-  // Manejadores para el arrastre (drag and drop)
+  // Manejadores para el arrastre
   const handleMouseDown = (e) => {
     if (isTransitioning) return;
     setIsDragging(true);
@@ -186,7 +281,7 @@ const Colaboradores = () => {
     setIsDragging(false);
   };
 
-  // Efectos para manejo de touch en dispositivos móviles
+  // Efectos para manejo de touch
   useEffect(() => {
     const handleTouchStart = (e) => {
       if (isTransitioning) return;
@@ -218,12 +313,10 @@ const Colaboradores = () => {
       setIsDragging(false);
     };
     
-    // Efecto para limpiar listeners
     const handleMouseUpGlobal = () => {
       setIsDragging(false);
     };
 
-    // Añadir listeners
     if (containerRef.current) {
       containerRef.current.addEventListener('touchstart', handleTouchStart);
       containerRef.current.addEventListener('touchmove', handleTouchMove);
@@ -242,13 +335,33 @@ const Colaboradores = () => {
     };
   }, [isDragging, isTransitioning, dragStart.x, dragStart.y, position.x, position.y, scale]);
 
+  // Función para generar conexiones dentro de cada fila
+  const generateRowConnections = () => {
+    const connections = [];
+    
+    Object.entries(colaboradoresData).forEach(([key, grupo]) => {
+      const miembros = grupo.miembros;
+      for (let i = 0; i < miembros.length - 1; i++) {
+        connections.push({
+          from: miembros[i],
+          to: miembros[i + 1],
+          type: 'row'
+        });
+      }
+    });
+    
+    return connections;
+  };
+
+  const connections = generateRowConnections();
+
   return (
     <div className="relative h-full w-full bg-amber-50 overflow-hidden">
       {/* Título y controles */}
-      <div className="absolute top-4 left-4 z-20 bg-white/80 p-3 rounded-lg shadow-md backdrop-blur-sm">
-        <h2 className="text-2xl font-bold text-amber-800 mb-2">Colaboradores</h2>
+      <div className="absolute top-4 left-4 z-20 bg-white/90 p-4 rounded-lg shadow-lg backdrop-blur-sm">
+        <h2 className="text-2xl font-bold text-amber-800 mb-2">Equipo de Investigación</h2>
         <p className="text-sm text-gray-600 mb-4">
-          Conoce al equipo detrás del Atlas de Abejas
+          Atlas de Abejas - Estructura Organizacional
         </p>
         <div className="flex space-x-2">
           {selectedColaborador ? (
@@ -287,7 +400,30 @@ const Colaboradores = () => {
         </div>
       </div>
 
-      {/* Contenedor principal con transformación */}
+      {/* Información del colaborador seleccionado */}
+      {selectedColaborador && (
+        <div className="absolute top-4 right-4 z-20 bg-white/95 p-4 rounded-lg shadow-lg backdrop-blur-sm max-w-xs">
+          <div className="flex items-center mb-3">
+            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-300 mr-3">
+              <img 
+                src={selectedColaborador.imagen} 
+                alt={selectedColaborador.nombre} 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 className="font-bold text-amber-800">{selectedColaborador.nombre}</h3>
+              <p className="text-sm text-amber-600">({selectedColaborador.iniciales})</p>
+            </div>
+          </div>
+          <div className="space-y-2 text-sm">
+            <p><strong>Título:</strong> {selectedColaborador.titulo}</p>
+            <p><strong>Participación:</strong> {selectedColaborador.participacion}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Contenedor principal */}
       <div 
         ref={containerRef}
         className="absolute inset-0 cursor-grab active:cursor-grabbing"
@@ -318,106 +454,85 @@ const Colaboradores = () => {
               transition: isTransitioning ? 'transform 0.6s ease-out' : 'none',
             }}
           >
-            {/* Conexiones (líneas) entre nodos */}
+            {/* Conexiones entre nodos de la misma fila */}
             <svg className="absolute top-0 left-0 w-full h-full" style={{ width: '2000px', height: '2000px', transform: 'translate(-1000px, -1000px)' }}>
-              {/* Línea central a todos los nodos */}
-              {colaboradoresData.map((colaborador) => (
+              {connections.map((connection, index) => (
                 <line 
-                  key={`line-${colaborador.id}`}
-                  x1="1000" 
-                  y1="1000" 
-                  x2={1000 + colaborador.posicion.x} 
-                  y2={1000 + colaborador.posicion.y}
+                  key={`connection-${index}`}
+                  x1={1000 + connection.from.posicion.x} 
+                  y1={1000 + connection.from.posicion.y} 
+                  x2={1000 + connection.to.posicion.x} 
+                  y2={1000 + connection.to.posicion.y}
                   stroke="#F59E0B"
-                  strokeWidth="2"
+                  strokeWidth="3"
                   strokeOpacity="0.6"
-                  strokeDasharray={selectedColaborador && selectedColaborador.id === colaborador.id ? "none" : "5,5"}
                 />
               ))}
-              
-              {/* Líneas secundarias entre nodos cercanos */}
-              <line x1="750" y1="800" x2="1250" y2="820" stroke="#F59E0B" strokeWidth="1" strokeOpacity="0.3" />
-              <line x1="650" y1="1050" x2="850" y2="1250" stroke="#F59E0B" strokeWidth="1" strokeOpacity="0.3" />
-              <line x1="1250" y1="820" x2="1320" y2="1080" stroke="#F59E0B" strokeWidth="1" strokeOpacity="0.3" />
-              <line x1="850" y1="1250" x2="1180" y2="1230" stroke="#F59E0B" strokeWidth="1" strokeOpacity="0.3" />
             </svg>
             
-            {/* Nodo central */}
-            <div 
-              className={`absolute w-32 h-32 rounded-full bg-amber-100 flex items-center justify-center shadow-lg transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:scale-110 ${
-                !selectedColaborador ? 'ring-4 ring-amber-400 ring-opacity-70' : ''
-              }`}
-              style={{ 
-                left: '0px', 
-                top: '0px',
-                zIndex: 10
-              }}
-              onClick={() => handleReset()}
-            >
-              <div className="text-center p-2">
-                <div className="w-16 h-16 mx-auto bg-amber-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-2">
-                  IA
-                </div>
-                <span className="font-bold text-amber-800 text-sm">Centro de Investigación</span>
-              </div>
+            {/* Títulos de las filas */}
+            <div className="absolute text-center font-bold text-amber-800 text-xl bg-white/80 px-4 py-2 rounded-lg shadow-md" style={{ left: '-80px', top: '-180px' }}>
+              {colaboradoresData.direccion.titulo}
+            </div>
+            <div className="absolute text-center font-bold text-amber-800 text-xl bg-white/80 px-4 py-2 rounded-lg shadow-md" style={{ left: '-120px', top: '-30px' }}>
+              {colaboradoresData.colaboradores_inia.titulo}
+            </div>
+            <div className="absolute text-center font-bold text-amber-800 text-xl bg-white/80 px-4 py-2 rounded-lg shadow-md" style={{ left: '-80px', top: '120px' }}>
+              {colaboradoresData.practicantes.titulo}
             </div>
             
             {/* Nodos de colaboradores */}
-            {colaboradoresData.map((colaborador) => (
-              <div 
-                key={colaborador.id}
-                className={`absolute rounded-full shadow-md transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:scale-110 ${
-                  selectedColaborador && selectedColaborador.id === colaborador.id ? 'ring-4 ring-amber-500 ring-opacity-70 z-20' : 'z-10'
-                }`}
-                style={{ 
-                  left: `${colaborador.posicion.x}px`, 
-                  top: `${colaborador.posicion.y}px`,
-                  width: selectedColaborador && selectedColaborador.id === colaborador.id ? '200px' : '110px',
-                  height: selectedColaborador && selectedColaborador.id === colaborador.id ? '160px' : '110px',
-                  backgroundColor: selectedColaborador && selectedColaborador.id === colaborador.id ? 'white' : '#FEF3C7',
-                  borderRadius: selectedColaborador && selectedColaborador.id === colaborador.id ? '16px' : '100%',
-                  padding: selectedColaborador && selectedColaborador.id === colaborador.id ? '16px' : '0',
-                  transition: 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                }}
-                onClick={() => zoomToColaborador(colaborador)}
-              >
-                {selectedColaborador && selectedColaborador.id === colaborador.id ? (
-                  // Vista expandida simplificada
-                  <div className="flex flex-col items-center h-full">
-                    <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-amber-300 mb-3">
-                      <img 
-                        src={colaborador.imagen} 
-                        alt={colaborador.nombre} 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="font-bold text-lg text-amber-800 text-center">{colaborador.nombre}</h3>
-                    <p className="text-amber-600 text-sm text-center mt-1">{colaborador.rol}</p>
-                  </div>
-                ) : (
-                  // Vista colapsada
+            {Object.entries(colaboradoresData).map(([key, grupo]) =>
+              grupo.miembros.map((colaborador) => (
+                <div 
+                  key={colaborador.id}
+                  className={`absolute shadow-lg transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:scale-110 ${
+                    selectedColaborador && selectedColaborador.id === colaborador.id ? 'ring-4 ring-amber-500 ring-opacity-70 z-20' : 'z-10'
+                  }`}
+                  style={{ 
+                    left: `${colaborador.posicion.x}px`, 
+                    top: `${colaborador.posicion.y}px`,
+                    width: selectedColaborador && selectedColaborador.id === colaborador.id ? '160px' : '120px',
+                    height: selectedColaborador && selectedColaborador.id === colaborador.id ? '140px' : '120px',
+                    backgroundColor: '#FEF3C7',
+                    border: '3px solid #F59E0B',
+                    borderRadius: '12px',
+                    transition: 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                  }}
+                  onClick={() => zoomToColaborador(colaborador)}
+                >
                   <div className="flex flex-col items-center justify-center h-full p-2">
-                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-amber-300 mb-1">
+                    <div className={`overflow-hidden border-2 border-amber-400 mb-2 ${
+                      selectedColaborador && selectedColaborador.id === colaborador.id ? 'w-16 h-16' : 'w-12 h-12'
+                    }`} style={{ borderRadius: '8px' }}>
                       <img 
                         src={colaborador.imagen} 
                         alt={colaborador.nombre} 
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <span className="font-medium text-amber-800 text-xs text-center leading-tight">
-                      {colaborador.nombre.split(' ')[0]}
-                    </span>
-                    <span className="text-amber-600 text-xs text-center">
-                      {colaborador.area.split(' ')[0]}
-                    </span>
+                    <div className="text-center">
+                      <div className={`font-bold text-amber-800 leading-tight ${
+                        selectedColaborador && selectedColaborador.id === colaborador.id ? 'text-sm' : 'text-xs'
+                      }`}>
+                        {selectedColaborador && selectedColaborador.id === colaborador.id 
+                          ? colaborador.nombre 
+                          : colaborador.nombre.split(' ').slice(0, 2).join(' ')
+                        }
+                      </div>
+                      {!selectedColaborador && (
+                        <div className="text-xs text-amber-600 mt-1">
+                          ({colaborador.iniciales})
+                        </div>
+                      )}
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
-            
     </div>
   );
 };

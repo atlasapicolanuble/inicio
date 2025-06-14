@@ -100,6 +100,23 @@
   }
 }
 
+@keyframes calendarGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(16, 185, 129, 0.6);
+  }
+}
+
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
 /* Clases para aplicar animaciones */
 .melifera-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
@@ -279,47 +296,473 @@
   left: 100%;
 }
 
-/* Estilos para el calendario de floración */
-.melifera-calendar-month {
-  position: relative;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border-radius: 8px;
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* === ESTILOS PARA EL CALENDARIO DE FLORACIÓN COMPLETAMENTE RESPONSIVO === */
 
-.melifera-calendar-month:hover {
-  transform: scale(1.1) translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  z-index: 10;
-}
-
-.melifera-calendar-tooltip {
-  position: absolute;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.9);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  white-space: nowrap;
-  z-index: 20;
+/* Contenedor principal del calendario usando variables CSS */
+.melifera-calendar {
+  background: linear-gradient(135deg, #1f2937, #374151);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2) var(--spacing-3); /* Reducido padding vertical */
+  margin: var(--spacing-1) 0; /* Reducido margen vertical */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.melifera-calendar-tooltip::after {
+.melifera-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-1);
+  max-width: 100%;
+}
+
+/* Contenedor de cada mes optimizado */
+.melifera-month {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--spacing-1) * 0.5);
+  min-width: 0;
+}
+
+/* Etiquetas de los meses usando variables responsivas */
+.melifera-month-label {
+  font-size: calc(var(--font-size-xs) * 0.9);
+  font-weight: 600;
+  color: #d1d5db;
+  text-align: center;
+  padding: calc(var(--spacing-1) * 0.5) 0;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* Barras de floración responsivas */
+.melifera-month-bar {
+  width: 100%;
+  height: calc(var(--spacing-10) * 1.4); /* Ultra altos */
+  border-radius: calc(var(--border-radius-sm) * 0.75);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: calc(var(--spacing-10) * 1.4);
+}
+
+.melifera-month-bar:hover {
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 9998; /* Un poco menos que el tooltip pero por encima del resto */
+}
+
+/* Tooltip responsivo usando variables */
+.melifera-tooltip {
+  position: absolute;
+  top: -40%; /* Muy cerca del cuadro, no tan arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.92);
+  color: white;
+  padding: calc(var(--spacing-2) * 0.75) var(--spacing-3);
+  border-radius: calc(var(--border-radius) * 0.75);
+  font-size: calc(var(--font-size-base) * 0.95);
+  font-weight: bold;
+  white-space: nowrap;
+  z-index: 9999; /* Z-index muy alto para estar por encima de todo */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0.95;
+  min-width: auto; /* Permitir que se ajuste al contenido */
+  width: max-content; /* Ancho basado en contenido */
+  text-align: center;
+}
+
+.melifera-tooltip::after {
   content: '';
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: rgba(0, 0, 0, 0.9);
+  border: calc(var(--spacing-1) * 0.75) solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.92); /* Flecha apunta hacia abajo */
+}
+
+/* Eliminar estilos no utilizados */
+.melifera-calendar-month {
+  display: none;
+}
+
+/* ============================
+   RESPONSIVE BREAKPOINTS USANDO VARIABLES CSS
+   ============================ */
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .melifera-calendar {
+    padding: var(--spacing-2);
+    margin: var(--spacing-1) 0;
+    border-radius: var(--border-radius);
+  }
+  
+  .melifera-calendar-grid {
+    gap: calc(var(--spacing-1) * 0.5);
+  }
+  
+  .melifera-month-label {
+    font-size: calc(var(--font-size-xs) * 0.8);
+    padding: calc(var(--spacing-1) * 0.25) 0;
+    letter-spacing: 0;
+  }
+  
+  .melifera-month-bar {
+    height: calc(var(--spacing-3) * 0.8);
+    min-height: calc(var(--spacing-3) * 0.8);
+    border-radius: calc(var(--border-radius-sm) * 0.5);
+  }
+  
+  .melifera-month-bar:hover {
+    transform: scale(1.1);
+  }
+  
+  .melifera-tooltip {
+    font-size: calc(var(--font-size-xs) * 0.9);
+    padding: calc(var(--spacing-1) * 0.75) calc(var(--spacing-2) * 0.75);
+    bottom: 120%;
+    min-width: calc(var(--spacing-6) * 1.2);
+  }
+}
+
+/* Móviles grandes y tablets pequeñas (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .melifera-calendar {
+    padding: calc(var(--spacing-3) * 0.8);
+    margin: calc(var(--spacing-2) * 0.8) 0;
+  }
+  
+  .melifera-calendar-grid {
+    gap: calc(var(--spacing-1) * 0.75);
+  }
+  
+  .melifera-month-label {
+    font-size: calc(var(--font-size-xs) * 0.85);
+    padding: calc(var(--spacing-1) * 0.5) 0;
+  }
+  
+  .melifera-month-bar {
+    height: calc(var(--spacing-4) * 0.65);
+    min-height: calc(var(--spacing-4) * 0.65);
+  }
+  
+  .melifera-tooltip {
+    font-size: calc(var(--font-size-sm) * 0.85);
+    padding: calc(var(--spacing-2) * 0.6) calc(var(--spacing-2) * 0.9);
+    bottom: 125%;
+    min-width: calc(var(--spacing-8) * 1.1);
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .melifera-calendar {
+    padding: var(--spacing-3);
+    margin: var(--spacing-2) 0;
+  }
+  
+  .melifera-calendar-grid {
+    gap: var(--spacing-1);
+  }
+  
+  .melifera-month-label {
+    font-size: var(--font-size-xs);
+    padding: calc(var(--spacing-1) * 0.6) 0;
+  }
+  
+  .melifera-month-bar {
+    height: calc(var(--spacing-4) * 0.8);
+    min-height: calc(var(--spacing-4) * 0.8);
+  }
+  
+  .melifera-tooltip {
+    font-size: calc(var(--font-size-sm) * 0.9);
+    padding: calc(var(--spacing-2) * 0.7) var(--spacing-3);
+    min-width: calc(var(--spacing-8) * 1.3);
+  }
+}
+
+/* Laptops pequeñas (1025px - 1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .melifera-calendar {
+    padding: var(--spacing-2) calc(var(--spacing-4) * 0.9); /* Reducido padding vertical */
+    margin: calc(var(--spacing-1) * 0.5) 0; /* Reducido margen vertical */
+    border-radius: var(--border-radius-xl);
+  }
+  
+  .melifera-calendar-grid {
+    gap: calc(var(--spacing-2) * 0.6);
+  }
+  
+  .melifera-month-label {
+    font-size: calc(var(--font-size-sm) * 0.85);
+    padding: calc(var(--spacing-1) * 0.5) 0; /* Reducido padding vertical */
+    letter-spacing: 0.015em;
+  }
+  
+  .melifera-month-bar {
+    height: calc(var(--spacing-12) * 0.6); /* Ultra altos y cuadrados */
+    min-height: calc(var(--spacing-12) * 0.6);
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .melifera-tooltip {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-2) calc(var(--spacing-3) * 1.1);
+    min-width: auto; /* Permitir centrado automático */
+    width: max-content;
+    z-index: 9999; /* Z-index muy alto */
+    top: -35%; /* Ajustado para laptops pequeñas */
+  }
+}
+
+/* Laptops grandes y desktops (1367px - 1920px) */
+@media (min-width: 1367px) and (max-width: 1920px) {
+  .melifera-calendar {
+    padding: calc(var(--spacing-2) * 1.2) var(--spacing-4); /* Reducido padding vertical */
+    margin: calc(var(--spacing-1) * 1.5) 0; /* Reducido margen vertical */
+    border-radius: var(--border-radius-xl);
+  }
+  
+  .melifera-calendar-grid {
+    gap: calc(var(--spacing-2) * 0.8);
+  }
+  
+  .melifera-month-label {
+    font-size: var(--font-size-sm);
+    padding: calc(var(--spacing-1) * 0.6) 0; /* Reducido padding vertical */
+    letter-spacing: 0.02em;
+  }
+  
+  .melifera-month-bar {
+    height: calc(var(--spacing-12) * 0.75); /* Ultra altos para laptops grandes */
+    min-height: calc(var(--spacing-12) * 0.75);
+    border-radius: var(--border-radius);
+  }
+  
+  .melifera-tooltip {
+    font-size: calc(var(--font-size-lg) * 0.9);
+    padding: calc(var(--spacing-2) * 1.1) calc(var(--spacing-4) * 0.9);
+    border-radius: var(--border-radius);
+    min-width: auto; /* Permitir centrado automático */
+    width: max-content;
+    z-index: 9999; /* Z-index muy alto */
+    top: -30%; /* Ajustado para laptops grandes */
+  }
+  
+  .melifera-tooltip::after {
+    border-width: var(--spacing-1);
+  }
+}
+
+/* Monitores muy grandes (1921px en adelante) */
+@media (min-width: 1921px) {
+  .melifera-calendar {
+    padding: calc(var(--spacing-5) * 1.1);
+    margin: var(--spacing-4) 0;
+    border-radius: calc(var(--border-radius-xl) * 1.2);
+  }
+  
+  .melifera-calendar-grid {
+    gap: var(--spacing-2);
+  }
+  
+  .melifera-month-label {
+    font-size: calc(var(--font-size-base) * 0.9);
+    padding: calc(var(--spacing-2) * 0.6) 0;
+    letter-spacing: 0.025em;
+  }
+  
+  .melifera-month-bar {
+    height: var(--spacing-12); /* Máxima altura para monitores grandes */
+    min-height: var(--spacing-12);
+    border-radius: calc(var(--border-radius) * 1.2);
+  }
+  
+  .melifera-tooltip {
+    font-size: var(--font-size-lg);
+    padding: calc(var(--spacing-3) * 0.8) var(--spacing-4);
+    border-radius: calc(var(--border-radius) * 1.2);
+    min-width: auto; /* Permitir centrado automático */
+    width: max-content;
+    z-index: 9999; /* Z-index muy alto */
+    top: -25%; /* Ajustado para monitores grandes */
+  }
+  
+  .melifera-tooltip::after {
+    border-width: calc(var(--spacing-1) * 1.2);
+  }
+}
+
+/* ============================
+   OPTIMIZACIONES ESPECÍFICAS PARA ALTURA DE PANTALLA
+   ============================ */
+
+/* Notebooks con altura limitada */
+@media (min-width: 1024px) and (max-height: 800px) {
+  .melifera-calendar {
+    padding: var(--spacing-1) calc(var(--spacing-2) * 1.2); /* Mínimo padding vertical */
+    margin: calc(var(--spacing-1) * 0.5) 0; /* Mínimo margen vertical */
+  }
+  
+  .melifera-month-label {
+    font-size: calc(var(--font-size-xs) * 0.9);
+    padding: calc(var(--spacing-1) * 0.2) 0; /* Reducido padding vertical */
+  }
+  
+  .melifera-month-bar {
+    height: calc(var(--spacing-10) * 0.9); /* Ultra altos incluso con altura limitada */
+    min-height: calc(var(--spacing-10) * 0.9);
+  }
+  
+  .melifera-tooltip {
+    font-size: calc(var(--font-size-sm) * 0.8);
+    padding: calc(var(--spacing-1) * 0.8) calc(var(--spacing-2) * 1.2);
+    min-width: auto; /* Permitir centrado automático */
+    width: max-content;
+    z-index: 9999; /* Z-index muy alto */
+    top: -45%; /* Más cerca para altura limitada */
+  }
+}
+
+/* Notebooks estándar 1366x768 */
+@media (min-width: 1024px) and (max-width: 1366px) and (max-height: 768px) {
+  .melifera-calendar {
+    padding: calc(var(--spacing-1) * 0.8) var(--spacing-2); /* Mínimo padding vertical */
+    margin: calc(var(--spacing-1) * 0.25) 0; /* Mínimo margen vertical */
+    border-radius: var(--border-radius);
+  }
+  
+  .melifera-calendar-grid {
+    gap: calc(var(--spacing-1) * 0.6);
+  }
+  
+  .melifera-month-label {
+    font-size: calc(var(--font-size-xs) * 0.8);
+    padding: calc(var(--spacing-1) * 0.15) 0; /* Mínimo padding vertical */
+  }
+  
+  .melifera-month-bar {
+    height: calc(var(--spacing-10) * 0.8); /* Ultra altos para 1366x768 */
+    min-height: calc(var(--spacing-10) * 0.8);
+    border-radius: calc(var(--border-radius-sm) * 0.6);
+  }
+  
+  .melifera-tooltip {
+    font-size: calc(var(--font-size-xs) * 1.1);
+    padding: calc(var(--spacing-1) * 0.6) var(--spacing-2);
+    min-width: auto; /* Permitir centrado automático */
+    width: max-content;
+    z-index: 9999; /* Z-index muy alto */
+    top: -50%; /* Muy cerca para 1366x768 */
+  }
+}
+
+/* ============================
+   ORIENTACIÓN HORIZONTAL EN DISPOSITIVOS PEQUEÑOS
+   ============================ */
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .melifera-calendar {
+    padding: calc(var(--spacing-2) * 0.8);
+    margin: calc(var(--spacing-1) * 0.5) 0;
+  }
+  
+  .melifera-month-label {
+    font-size: calc(var(--font-size-xs) * 0.75);
+    padding: calc(var(--spacing-1) * 0.25) 0;
+  }
+  
+  .melifera-month-bar {
+    height: calc(var(--spacing-3) * 0.8);
+    min-height: calc(var(--spacing-3) * 0.8);
+  }
+  
+  .melifera-tooltip {
+    font-size: calc(var(--font-size-xs) * 0.9);
+    padding: calc(var(--spacing-1) * 0.5) calc(var(--spacing-2) * 0.8);
+  }
+}
+
+/* ============================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ============================ */
+
+/* GPU acceleration para animaciones del calendario */
+.melifera-month-bar,
+.melifera-tooltip {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimización de repaint para el calendario */
+.melifera-calendar {
+  contain: layout style paint;
+}
+
+/* ============================
+   MODO OSCURO PARA EL CALENDARIO
+   ============================ */
+
+@media (prefers-color-scheme: dark) {
+  .melifera-calendar {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-color: #334155;
+  }
+  
+  .melifera-month-label {
+    color: #e2e8f0;
+  }
+  
+  .melifera-month-bar {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .melifera-tooltip {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ============================
+   ACCESIBILIDAD DEL CALENDARIO
+   ============================ */
+
+/* Focus states para el calendario */
+.melifera-month-bar:focus {
+  outline: 2px solid var(--color-nav-indicator);
+  outline-offset: 2px;
+}
+
+/* Reducir movimiento para usuarios sensibles */
+@media (prefers-reduced-motion: reduce) {
+  .melifera-month-bar:hover {
+    transform: none;
+  }
+  
+  .melifera-tooltip {
+    transition: none;
+  }
+}
+
+/* Alto contraste para el calendario */
+@media (prefers-contrast: high) {
+  .melifera-month-bar {
+    border: 2px solid #000;
+  }
+  
+  .melifera-tooltip {
+    background: #000;
+    border: 2px solid #fff;
+  }
 }
 
 /* Efectos para gradientes de fondo */
@@ -423,8 +866,9 @@
   }
   
   .melifera-calendar-month {
-    min-height: 40px;
-    font-size: 0.75rem;
+    min-height: 44px;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
   }
   
   .melifera-taxonomy-card {
@@ -442,8 +886,13 @@
   }
   
   .melifera-calendar-month {
-    min-height: 36px;
-    font-size: 0.7rem;
+    min-height: 40px;
+    font-size: 0.75rem;
+    letter-spacing: 0.2px;
+  }
+  
+  .melifera-calendar-month:hover {
+    transform: scale(1.1) translateY(-4px);
   }
 }
 
