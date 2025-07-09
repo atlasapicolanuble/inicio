@@ -20,7 +20,6 @@ import meliferaData from './MeliferaData';
 import './Atlas.css';
 import './MeliferaStyles.css';
 
-// Importar logos
 import logoGobChile from './images/logob.png';
 import logoinia from './images/logoinia.png';
 import abeja from '../components/images/Abeja.png';
