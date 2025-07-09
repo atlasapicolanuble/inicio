@@ -250,7 +250,7 @@ const colaboradoresData = {
         participacion: "Asistente de Campo",
         imagen: "https://randomuser.me/api/portraits/men/31.jpg",
         contacto: {
-          email: "",
+          email: "felipeortiz@gmail.com",
           linkedin: ""
         },
         posicion: { x: 100, y: 450 }
@@ -929,5 +929,4 @@ const Colaboradores = () => {
       </div>
     );
   };
-
   export default Colaboradores;
