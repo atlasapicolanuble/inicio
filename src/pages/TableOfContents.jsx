@@ -121,8 +121,7 @@ const TableOfContentsPage = ({ onChangePage }) => {
           <div className="w-full h-full bg-gradient-to-br from-blue-200 via-blue-300 to-green-200"></div>
         </video>
         
-        {/* Overlay suave para mejorar legibilidad */}
-        <div className="absolute inset-0 bg-white bg-opacity-20"></div>
+        {/* OVERLAY ELIMINADO - Ahora el video se ve tal como está */}
       </div>
 
       {/* Lado derecho - Tabla de contenidos */}

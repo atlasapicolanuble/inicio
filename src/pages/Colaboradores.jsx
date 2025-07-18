@@ -1,5 +1,21 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, ArrowLeft, Play, Pause, Mail, ExternalLink } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, ArrowLeft, Play, Pause, Mail, ExternalLink, User } from 'lucide-react';
+
+// Función para cargar imágenes de forma dinámica con manejo de errores
+const loadImage = (imageName) => {
+  try {
+    return require(`./Fotos/${imageName}`);
+  } catch (error) {
+    console.warn(`Imagen no encontrada: ./Fotos/${imageName}`);
+    return null;
+  }
+};
+
+// Generar array de imágenes del 1 al 32
+const fotosLocales = Array.from({ length: 32 }, (_, index) => {
+  const imageNumber = index + 1;
+  return loadImage(`image${imageNumber}.png`);
+});
 
 // Datos organizados por filas con información actualizada del documento
 const colaboradoresData = {
@@ -12,7 +28,7 @@ const colaboradoresData = {
         iniciales: "MCM",
         titulo: "Dr. Ciencias Ambientales",
         participacion: "Coordinador",
-        imagen: "https://randomuser.me/api/portraits/men/45.jpg",
+        imagen: fotosLocales[0], // image1.png
         contacto: {
           email: "",
           linkedin: "https://www.linkedin.com/in/marcelino-claret-merino-b8352224/"
@@ -25,7 +41,7 @@ const colaboradoresData = {
         iniciales: "AHS",
         titulo: "Ing. Agrónomo",
         participacion: "Investigadora Principal",
-        imagen: "https://randomuser.me/api/portraits/women/28.jpg",
+        imagen: fotosLocales[1], // image2.png
         contacto: {
           email: "Alejandra.henriquezsu@gmail.com",
           linkedin: ""
@@ -38,7 +54,7 @@ const colaboradoresData = {
         iniciales: "MP",
         titulo: "Ing. Agrónomo (E)",
         participacion: "Especialista en Campo",
-        imagen: "https://randomuser.me/api/portraits/men/32.jpg",
+        imagen: fotosLocales[2], // image3.png
         contacto: {
           email: "Manuel.palaciosm@gmail.com",
           linkedin: ""
@@ -51,7 +67,7 @@ const colaboradoresData = {
         iniciales: "SC",
         titulo: "Ing. Recursos Naturales (E) UBB",
         participacion: "Especialista en Recursos Naturales",
-        imagen: "https://randomuser.me/api/portraits/men/67.jpg",
+        imagen: fotosLocales[3], // image4.png
         contacto: {
           email: "",
           linkedin: ""
@@ -64,7 +80,7 @@ const colaboradoresData = {
         iniciales: "EC",
         titulo: "Ing. Agrónomo",
         participacion: "Especialista ANR",
-        imagen: "https://randomuser.me/api/portraits/men/52.jpg",
+        imagen: fotosLocales[4], // image5.png
         contacto: {
           email: "cardenas.edmundo@gmail.com",
           linkedin: ""
@@ -77,7 +93,7 @@ const colaboradoresData = {
         iniciales: "OO",
         titulo: "Apicultora ANR",
         participacion: "Especialista en Apicultura",
-        imagen: "https://randomuser.me/api/portraits/women/45.jpg",
+        imagen: fotosLocales[5], // image6.png
         contacto: {
           email: "oriana.oyarce@gmail.com",
           linkedin: ""
@@ -95,7 +111,7 @@ const colaboradoresData = {
         iniciales: "MF",
         titulo: "Ing. Civil Agrícola, Mg. En Teledetección",
         participacion: "Especialista en Teledetección",
-        imagen: "https://randomuser.me/api/portraits/men/22.jpg",
+        imagen: fotosLocales[6], // image7.png
         contacto: {
           email: "Marcel.fuentes@inia.cl",
           linkedin: ""
@@ -108,7 +124,7 @@ const colaboradoresData = {
         iniciales: "RR",
         titulo: "Ing. Civil Agrícola",
         participacion: "Investigador INIA",
-        imagen: "https://randomuser.me/api/portraits/men/55.jpg",
+        imagen: fotosLocales[7], // image8.png
         contacto: {
           email: "reruiz@inia.cl",
           linkedin: ""
@@ -121,7 +137,7 @@ const colaboradoresData = {
         iniciales: "SB",
         titulo: "Ing. Agrónomo, M. SC.",
         participacion: "Investigador Principal INIA",
-        imagen: "https://randomuser.me/api/portraits/men/41.jpg",
+        imagen: fotosLocales[8], // image9.png
         contacto: {
           email: "sbest@inia.cl",
           linkedin: ""
@@ -134,7 +150,7 @@ const colaboradoresData = {
         iniciales: "RO",
         titulo: "Ing. En Recursos Naturales",
         participacion: "Especialista en Recursos Naturales",
-        imagen: "https://randomuser.me/api/portraits/men/38.jpg",
+        imagen: fotosLocales[9], // image10.png
         contacto: {
           email: "raul.orrego@inia.cl",
           linkedin: ""
@@ -146,72 +162,72 @@ const colaboradoresData = {
   colaboradores_externos: {
     titulo: "Colaboradores Otras Instituciones",
     miembros: [
-  {
-    id: 11,
-    nombre: "Emanuel Canales",
-    iniciales: "EC",
-    titulo: "Asoc. Apicultura Natural Regenerativa",
-    participacion: "Especialista en Apicultura Natural",
-    imagen: "https://randomuser.me/api/portraits/men/45.jpg",
-    contacto: {
-      email: "contacto@apiculturanatural.com",
-      linkedin: ""
-    },
-    posicion: { x: -300, y: 100 }
-  },
-  {
-    id: 12,
-    nombre: "Dr. Mauricio Rondanelli R.",
-    iniciales: "MRR",
-    titulo: "Biólogo. Dr. en Cs. Biológicas",
-    participacion: "Palinólogo UDEC Campus LA",
-    imagen: "https://randomuser.me/api/portraits/men/60.jpg",
-    contacto: {
-      email: "mrondane@udec.cl",
-      linkedin: ""
-    },
-    posicion: { x: -150, y: 100 }
-  },
-  {
-    id: 13,
-    nombre: "Iván Lamas V.",
-    iniciales: "ILV",
-    titulo: "Ingeniero en Biotecnología Vegetal",
-    participacion: "Lab. Palinología UDEC Campus LA",
-    imagen: "https://randomuser.me/api/portraits/men/35.jpg",
-    contacto: {
-      email: "",
-      linkedin: ""
-    },
-    posicion: { x: 0, y: 100 }
-  },
-  {
-    id: 14,
-    nombre: "Dr. Nicolás Villalobos",
-    iniciales: "NV",
-    titulo: "Doctor en Ciencias Biológicas área Botánica",
-    participacion: "Especialista en Botánica",
-    imagen: "https://randomuser.me/api/portraits/men/50.jpg",
-    contacto: {
-      email: "nvillalobo@ubiobio.cl",
-      linkedin: ""
-    },
-    posicion: { x: 150, y: 100 }
-  },
-  {
-    id: 15,
-    nombre: "Pedro Vera",
-    iniciales: "PV",
-    titulo: "Ing. Informática (Es) Santo Tomás",
-    participacion: "Especialista en Tecnología",
-    imagen: "https://randomuser.me/api/portraits/men/25.jpg",
-    contacto: {
-      email: "",
-      linkedin: ""
-    },
-    posicion: { x: 300, y: 100 }
-  }
-]
+      {
+        id: 11,
+        nombre: "Emanuel Canales",
+        iniciales: "EC",
+        titulo: "Asoc. Apicultura Natural Regenerativa",
+        participacion: "Especialista en Apicultura Natural",
+        imagen: fotosLocales[10], // image11.png
+        contacto: {
+          email: "contacto@apiculturanatural.com",
+          linkedin: ""
+        },
+        posicion: { x: -300, y: 100 }
+      },
+      {
+        id: 12,
+        nombre: "Dr. Mauricio Rondanelli R.",
+        iniciales: "MRR",
+        titulo: "Biólogo. Dr. en Cs. Biológicas",
+        participacion: "Palinólogo UDEC Campus LA",
+        imagen: fotosLocales[11], // image12.png
+        contacto: {
+          email: "mrondane@udec.cl",
+          linkedin: ""
+        },
+        posicion: { x: -150, y: 100 }
+      },
+      {
+        id: 13,
+        nombre: "Iván Lamas V.",
+        iniciales: "ILV",
+        titulo: "Ingeniero en Biotecnología Vegetal",
+        participacion: "Lab. Palinología UDEC Campus LA",
+        imagen: fotosLocales[12], // image13.png
+        contacto: {
+          email: "",
+          linkedin: ""
+        },
+        posicion: { x: 0, y: 100 }
+      },
+      {
+        id: 14,
+        nombre: "Dr. Nicolás Villalobos",
+        iniciales: "NV",
+        titulo: "Doctor en Ciencias Biológicas área Botánica",
+        participacion: "Especialista en Botánica",
+        imagen: fotosLocales[13], // image14.png
+        contacto: {
+          email: "nvillalobo@ubiobio.cl",
+          linkedin: ""
+        },
+        posicion: { x: 150, y: 100 }
+      },
+      {
+        id: 15,
+        nombre: "Pedro Vera",
+        iniciales: "PV",
+        titulo: "Ing. Informática (Es) Santo Tomás",
+        participacion: "Especialista en Tecnología",
+        imagen: fotosLocales[14], // image15.png
+        contacto: {
+          email: "",
+          linkedin: ""
+        },
+        posicion: { x: 300, y: 100 }
+      }
+    ]
   },
   practicantes_santo_tomas: {
     titulo: "Instituto Profesional Santo Tomás",
@@ -222,7 +238,7 @@ const colaboradoresData = {
         iniciales: "NC",
         titulo: "Técnico Agrícola Santo Tomás",
         participacion: "Apoyo Técnico en Campo",
-        imagen: "https://randomuser.me/api/portraits/men/23.jpg",
+        imagen: fotosLocales[15], // image16.png
         contacto: {
           email: "",
           linkedin: ""
@@ -235,7 +251,7 @@ const colaboradoresData = {
         iniciales: "PG",
         titulo: "Técnico Agrícola Santo Tomás",
         participacion: "Asistente de Campo",
-        imagen: "https://randomuser.me/api/portraits/men/19.jpg",
+        imagen: fotosLocales[16], // image17.png
         contacto: {
           email: "",
           linkedin: ""
@@ -248,7 +264,7 @@ const colaboradoresData = {
         iniciales: "SSM",
         titulo: "Técnico Agrícola (Es) Santo Tomás",
         participacion: "Asistente de Laboratorio",
-        imagen: "https://randomuser.me/api/portraits/women/34.jpg",
+        imagen: fotosLocales[17], // image18.png
         contacto: {
           email: "",
           linkedin: ""
@@ -261,7 +277,7 @@ const colaboradoresData = {
         iniciales: "FO",
         titulo: "Técnico Agrícola (Es) Santo Tomás",
         participacion: "Asistente de Campo",
-        imagen: "https://randomuser.me/api/portraits/men/29.jpg",
+        imagen: fotosLocales[18], // image19.png
         contacto: {
           email: "",
           linkedin: ""
@@ -274,7 +290,7 @@ const colaboradoresData = {
         iniciales: "ES",
         titulo: "Técnico Agrícola (Es) Santo Tomás",
         participacion: "Asistente de Laboratorio",
-        imagen: "https://randomuser.me/api/portraits/women/33.jpg",
+        imagen: fotosLocales[19], // image20.png
         contacto: {
           email: "",
           linkedin: ""
@@ -292,7 +308,7 @@ const colaboradoresData = {
         iniciales: "GM",
         titulo: "Ing. Agrícola (Es) Inacap",
         participacion: "Apoyo en Análisis",
-        imagen: "https://randomuser.me/api/portraits/women/27.jpg",
+        imagen: fotosLocales[20], // image21.png
         contacto: {
           email: "",
           linkedin: ""
@@ -305,7 +321,7 @@ const colaboradoresData = {
         iniciales: "FO",
         titulo: "Técnico Agrícola (Es) Inacap",
         participacion: "Asistente de Campo",
-        imagen: "https://randomuser.me/api/portraits/men/31.jpg",
+        imagen: fotosLocales[21], // image22.png
         contacto: {
           email: "",
           linkedin: ""
@@ -323,7 +339,7 @@ const colaboradoresData = {
         iniciales: "OB",
         titulo: "Téc. En Química Industrial",
         participacion: "Liceo Bicentenario San Nicolás",
-        imagen: "https://randomuser.me/api/portraits/men/24.jpg",
+        imagen: fotosLocales[22], // image23.png
         contacto: {
           email: "",
           linkedin: ""
@@ -341,7 +357,7 @@ const colaboradoresData = {
         iniciales: "VA",
         titulo: "Agronomía (Es) UDEC",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/men/26.jpg",
+        imagen: fotosLocales[23], // image24.png
         contacto: {
           email: "",
           linkedin: ""
@@ -354,7 +370,7 @@ const colaboradoresData = {
         iniciales: "GS",
         titulo: "Agronomía (Es) UDEC",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/men/28.jpg",
+        imagen: fotosLocales[24], // image25.png
         contacto: {
           email: "",
           linkedin: ""
@@ -367,7 +383,7 @@ const colaboradoresData = {
         iniciales: "CA",
         titulo: "Agronomía (Es) UDEC",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/women/42.jpg",
+        imagen: fotosLocales[25], // image26.png
         contacto: {
           email: "",
           linkedin: ""
@@ -380,7 +396,7 @@ const colaboradoresData = {
         iniciales: "PO",
         titulo: "Ing. Ambiental UDEC",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/women/38.jpg",
+        imagen: fotosLocales[26], // image27.png
         contacto: {
           email: "",
           linkedin: ""
@@ -393,7 +409,7 @@ const colaboradoresData = {
         iniciales: "PB",
         titulo: "Ing. Ambiental UDEC",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/women/35.jpg",
+        imagen: fotosLocales[27], // image28.png
         contacto: {
           email: "",
           linkedin: ""
@@ -406,7 +422,7 @@ const colaboradoresData = {
         iniciales: "AG",
         titulo: "Ing. Ambiental UDEC",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/men/33.jpg",
+        imagen: fotosLocales[28], // image29.png
         contacto: {
           email: "",
           linkedin: ""
@@ -419,7 +435,7 @@ const colaboradoresData = {
         iniciales: "MM",
         titulo: "Agronomía UDEC",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/men/27.jpg",
+        imagen: fotosLocales[29], // image30.png
         contacto: {
           email: "",
           linkedin: ""
@@ -432,7 +448,7 @@ const colaboradoresData = {
         iniciales: "CO",
         titulo: "Ing. Civil Industrial (Es) UDEC",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/women/39.jpg",
+        imagen: fotosLocales[30], // image31.png
         contacto: {
           email: "",
           linkedin: ""
@@ -450,7 +466,7 @@ const colaboradoresData = {
         iniciales: "JM",
         titulo: "(Es) Tec. Agrícola Nivel Superior",
         participacion: "Estudiante en Práctica",
-        imagen: "https://randomuser.me/api/portraits/men/30.jpg",
+        imagen: fotosLocales[31], // image32.png
         contacto: {
           email: "",
           linkedin: ""
@@ -907,12 +923,18 @@ const Colaboradores = () => {
       {selectedColaborador && (
         <div className="absolute top-4 right-4 z-20 bg-white/95 p-4 rounded-xl shadow-xl backdrop-blur-sm max-w-sm border border-amber-200">
           <div className="flex items-center mb-3">
-            <div className="w-14 h-14 rounded-full overflow-hidden border-3 border-amber-300 mr-3 shadow-md">
-              <img 
-                src={selectedColaborador.imagen} 
-                alt={selectedColaborador.nombre} 
-                className="w-full h-full object-cover"
-              />
+            <div className="w-14 h-14 rounded-full overflow-hidden border-3 border-amber-300 mr-3 shadow-md flex items-center justify-center">
+              {selectedColaborador.imagen ? (
+                <img 
+                  src={selectedColaborador.imagen} 
+                  alt={selectedColaborador.nombre} 
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-red-500 flex items-center justify-center">
+                  <User size={24} className="text-white" />
+                </div>
+              )}
             </div>
             <div>
               <h3 className="font-bold text-amber-800 text-lg">{selectedColaborador.nombre}</h3>
@@ -1120,14 +1142,20 @@ const Colaboradores = () => {
                   onClick={() => zoomToColaborador(colaborador)}
                 >
                   <div className="flex flex-col items-center justify-center h-full p-3">
-                    <div className={`overflow-hidden border-3 border-amber-400 mb-3 shadow-md ${
+                    <div className={`overflow-hidden border-3 border-amber-400 mb-3 shadow-md flex items-center justify-center ${
                       selectedColaborador && selectedColaborador.id === colaborador.id ? 'w-18 h-18' : 'w-14 h-14'
                     }`} style={{ borderRadius: '12px' }}>
-                      <img 
-                        src={colaborador.imagen} 
-                        alt={colaborador.nombre} 
-                        className="w-full h-full object-cover"
-                      />
+                      {colaborador.imagen ? (
+                        <img 
+                          src={colaborador.imagen} 
+                          alt={colaborador.nombre} 
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-red-500 flex items-center justify-center">
+                          <User size={selectedColaborador && selectedColaborador.id === colaborador.id ? 32 : 24} className="text-white" />
+                        </div>
+                      )}
                     </div>
                     <div className="text-center">
                       <div className={`font-bold text-amber-800 leading-tight ${
