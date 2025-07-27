@@ -219,7 +219,7 @@ const colaboradoresData = {
         nombre: "Pedro Vera",
         iniciales: "PV",
         titulo: "Ing. Informática (Es) Santo Tomás",
-        participacion: "Especialista en Tecnología",
+        participacion: "Desarrollador Atlas web",
         imagen: fotosLocales[14], // image15.png
         contacto: {
           email: "",
