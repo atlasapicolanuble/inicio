@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import reproduccion from '../components/images/reproduccion.mov';
+import reproduccion from '../components/images/bot.mp4';
 import marco from '../components/images/marco.png';
 
 export default function BotanicaMelifera() {

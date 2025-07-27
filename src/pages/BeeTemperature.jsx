@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import reproducion from '../components/images/reproduccion.mov';
+import reproducion from '../components/images/temp.mp4';
 import marco from '../components/images/marco.png';
 
 export default function BeeTemperature() {

@@ -30,7 +30,7 @@ const importMeliferaImages = () => {
   for (let i = 1; i <= 42; i++) {
     const pageNumber = i.toString().padStart(4, '0');
     try {
-      images[`melifera-page-${i}`] = require(`../pages/Meliferas/MeliferaIMG_page-${pageNumber}.jpg`);
+      images[`melifera-page-${i}`] = require(`../pages/Meliferas/MeliferaIMG_page-${pageNumber}.webp`);
     } catch (error) {
       console.warn(`No se pudo cargar la imagen para la página ${i}`);
       images[`melifera-page-${i}`] = "https://via.placeholder.com/400x300";
